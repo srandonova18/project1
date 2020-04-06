@@ -12,7 +12,7 @@ struct VISITOR {
 
     string firstName = "";
     string lastName = "";
-    int age = 0;
+    int age;
     int numberOfBooks = 0;
     string dayOfVisit = "";
     BOOK books[100];
