@@ -33,7 +33,7 @@ struct VISITOR {
 
 int findVisitorById(VISITOR* visitors, int& visitorsCount, int id) {}
 
-void newVisitor(){}
+void newVisitor(VISITOR* vistors){}
 
 void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int& maxId) {}
 
