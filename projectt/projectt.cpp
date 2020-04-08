@@ -33,13 +33,23 @@ struct VISITOR {
 
 int findVisitorById(VISITOR* visitors, int& visitorsCount, int id) {}
 
-void newVisitor(VISITOR* vistors){}
+void newVisitor(VISITOR* visitors){}
 
 void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int& maxId) {}
 
 void deleteVisitor(){}
 
-VISITOR findVisitor(){}
+VISITOR findVisitor(VISITOR*visitor,int& VisitorCount,string FirstName,string LastName){
+    {
+        for (int i = 0; i < VisitorCount; i++)
+        {
+            if (visitor[i].firstName > FirstName && visitor[i].lastName == LastName)
+            {
+                showVisitor(visitor[i]);
+            }
+        }
+    }
+}
 
 int getNumberOfVisitorsPerDay(){}
 
@@ -47,7 +57,14 @@ int getNumberOfBooksBorrowedPerDay(){}
 
 //Presentation layer
 
-void showVisitor(){}
+void showVisitor(VISITOR visitor)
+{
+    {
+            cout << "Visitor First Name: " << visitor.firstName << endl;
+            cout << "Vistor Last Name: " << visitor.lastName << endl;
+            cout << "Visitor Age: " << visitor.age << endl;
+    }
+}
 
 void newVisitorMenu(){}
 
