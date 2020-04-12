@@ -31,11 +31,11 @@ struct VISITOR {
 
 //CRUD
 
-int findVisitorById(VISITOR* visitors, int& visitorsCount, int id) {}
+int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {}
 
 void newVisitor(VISITOR* visitors){}
 
-void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int& maxId) {}
+void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorCount, int& maxId) {}
 
 void deleteVisitor(VISITOR* visitors, int& VisitorCount, int id)
 {
@@ -47,13 +47,13 @@ for(int i- index; i<VisitorCount; i++)
 VisitorCount--;
 }
 
-VISITOR findVisitor(VISITOR*visitor,int& VisitorCount,string FirstName,string LastName){
+VISITOR findVisitor(VISITOR* visitors,int& VisitorCount,string FirstName,string LastName){
     {
         for (int i = 0; i < VisitorCount; i++)
         {
-            if (visitor[i].firstName > FirstName && visitor[i].lastName == LastName)
+            if (visitors[i].firstName > FirstName && visitors[i].lastName == LastName)
             {
-                showVisitor(visitor[i]);
+                showVisitor(visitors[i]);
             }
         }
     }
@@ -61,7 +61,20 @@ VISITOR findVisitor(VISITOR*visitor,int& VisitorCount,string FirstName,string La
 
 int getNumberOfVisitorsPerDay(){}
 
-int getNumberOfBooksBorrowedPerDay(){}
+int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, BOOK books[100], WEEK_DAYS dayOfTheWeek)
+{
+    float sum=0;
+
+    for(int i=0; i< VisitorCount; i++)
+    {
+        if(books[i].dayOfTheWeek==0)
+        {
+            sum=sum+books[i].total;
+        }
+        return 0;
+    }
+
+}
 
 //Presentation layer
 
@@ -70,12 +83,12 @@ int getNumberOfBooksBorrowedPerDay(){}
 //testPush
 //PushTest2
 
-void showVisitor(VISITOR visitor)
+void showVisitor(VISITOR visitors)
 {
     {
-            cout << "Visitor First Name: " << visitor.firstName << endl;
-            cout << "Vistor Last Name: " << visitor.lastName << endl;
-            cout << "Visitor Age: " << visitor.age << endl;
+            cout << "Visitor First Name: " << visitors.firstName << endl;
+            cout << "Vistor Last Name: " << visitors.lastName << endl;
+            cout << "Visitor Age: " << visitors.age << endl;
     }
 }
 
@@ -83,7 +96,7 @@ void newVisitorMenu(){}
 
 void showVisitorMenu(){}
 
-void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int&maxId)
+void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId)
 {
 int visitorId;
 
