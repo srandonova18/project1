@@ -37,7 +37,15 @@ void newVisitor(VISITOR* visitors){}
 
 void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int& maxId) {}
 
-void deleteVisitor(){}
+void deleteVisitor(VISITOR* visitors, int& VisitorCount, int id)
+{
+int index= getVisitorsProductById(visitors, visitorCount, id);
+for(int i- index; i<VisitorCount; i++)
+{
+    visitors[i]=visitors[i+1];
+}
+VisitorCount--;
+}
 
 VISITOR findVisitor(VISITOR*visitor,int& VisitorCount,string FirstName,string LastName){
     {
@@ -75,11 +83,18 @@ void newVisitorMenu(){}
 
 void showVisitorMenu(){}
 
-void deleteVisitorMenu(){}
+void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int&maxId)
+{
+int visitorId;
+
+cout<<"Enter visitor ID: ";
+cin>>visitorId;
+deleteVisitor(visitors, visitorsCount,visitorId);
+}
 
 void showReportsMenu(){}
 
-void editVisitorMenu(VISITOR* visitors, int& visitorsCount) {}
+void editVisitorMenu(VISITOR* visitors, int& visitorCount) {}
 
 bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId){
 
