@@ -35,28 +35,32 @@ int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {}
 
 void newVisitor(VISITOR* visitors){}
 
-void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorCount, int& maxId) {}
+void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int& maxId) {
 
-void deleteVisitor(VISITOR* visitors, int& VisitorCount, int id)
-{
-int index= getVisitorsProductById(visitors, visitorCount, id);
-for(int i- index; i<VisitorCount; i++)
-{
-    visitors[i]=visitors[i+1];
-}
-VisitorCount--;
+    int index = findVisitorById(visitors, visitorsCount, maxId);
+    visitors[index] = newVisitor;
 }
 
-VISITOR findVisitor(VISITOR* visitors,int& VisitorCount,string FirstName,string LastName){
+
+void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
+    int index = findVisitorById(visitors, visitorCount, id);
+
+    for(int i = index; i < visitorCount; i++)
     {
-        for (int i = 0; i < VisitorCount; i++)
-        {
-            if (visitors[i].firstName > FirstName && visitors[i].lastName == LastName)
-            {
+        visitors[i]=visitors[i + 1];
+    }
+    visitorCount--;
+}
+
+VISITOR findVisitor(VISITOR* visitors, int& VisitorCount, string FirstName, string LastName) {
+    
+    for (int i = 0; i < VisitorCount; i++) {
+        if (visitors[i].firstName > FirstName && visitors[i].lastName == LastName) {
+
                 showVisitor(visitors[i]);
-            }
         }
     }
+    
 }
 
 int getNumberOfVisitorsPerDay(){}
@@ -65,7 +69,7 @@ int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, BOOK books[100], WEEK_DAYS
 {
     float sum=0;
 
-    for(int i=0; i< VisitorCount; i++)
+    for(int i=0; i < visitorCount; i++)
     {
         if(books[i].dayOfTheWeek==0)
         {
@@ -98,11 +102,12 @@ void showVisitorMenu(){}
 
 void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId)
 {
-int visitorId;
+    int visitorId;
 
-cout<<"Enter visitor ID: ";
-cin>>visitorId;
-deleteVisitor(visitors, visitorsCount,visitorId);
+    cout<<"Enter visitor ID: ";
+    cin>>visitorId;
+
+    deleteVisitor(visitors, visitorCount,visitorId);
 }
 
 void showReportsMenu(){}
