@@ -113,15 +113,6 @@ int getAverageOfVisitorsAgesForTheWeek(VISITOR* visitors, int visitorCount) {
 
 //PRESENTATION LAYER
 
-void showVisitor(VISITOR visitors)
-{
-    {
-            cout << "Visitor First Name: " << visitors.firstName << endl;
-            cout << "Vistor Last Name: " << visitors.lastName << endl;
-            cout << "Visitor Age: " << visitors.age << endl;
-    }
-}
-
 void newVisitorMenu(){}
 
 void showVisitorMenu(){}
