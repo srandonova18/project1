@@ -67,20 +67,21 @@ VISITOR findVisitor(VISITOR* visitors, int& VisitorCount, string FirstName, stri
 
 int getNumberOfVisitorsPerDay(){}
 
-int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, BOOK books[100], WEEK_DAYS dayOfTheWeek)
-{
-    float sum=0;
+int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS dayOfTheWeek) {
 
-    for(int i=0; i < visitorCount; i++)
-    {
-        if(books[i].dayOfTheWeek==0)
-        {
-            sum=sum+books[i].total;
+    short int NumberBooks = 0;
+
+    for (int i = 0; i < visitorCount; i++) {
+
+        if (visitors[i].dayOfTheWeek == dayOfTheWeek) {
+
+            NumberBooks = NumberBooks + visitors[i].NumberBooks;
         }
-        return 0;
     }
 
+    return NumberBooks;
 }
+
 
 int getAverageOfVisitorsAgesForTheWeek(VISITOR* visitors, int visitorCount) {
 
