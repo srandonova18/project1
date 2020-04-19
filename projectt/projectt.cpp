@@ -5,10 +5,10 @@ struct BOOK {
 
     string title = "";
     string authorName = "";
-    int yearOfRelease = 0;
+    short int yearOfRelease = 0;
 };
 
-enum WEEK_DAYS {
+enum class WEEK_DAYS {
 
     MON,
     TUE,
@@ -23,10 +23,10 @@ struct VISITOR {
 
     string firstName = "";
     string lastName = "";
-    int age;
-    int numberOfBooks = 0;
-    WEEK_DAYS dayOfTheWeek;
-    BOOK books[100];
+    short int age = 0;
+    short int numberOfBooks = 0;
+    WEEK_DAYS dayOfTheWeek = WEEK_DAYS::MON;
+    BOOK books[7];
 };
 
 //CRUD
@@ -43,12 +43,14 @@ void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int&
 
 
 void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
+    
     int index = findVisitorById(visitors, visitorCount, id);
 
-    for(int i = index; i < visitorCount; i++)
-    {
+    for(int i = index; i < visitorCount; i++) {
+
         visitors[i]=visitors[i + 1];
     }
+
     visitorCount--;
 }
 
@@ -80,12 +82,22 @@ int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, BOOK books[100], WEEK_DAYS
 
 }
 
-//Presentation layer
+int getAverageOfVisitorsAgesForTheWeek(VISITOR* visitors, int visitorCount) {
+
+    short int ages = 0;
+
+    for (int i = 0; i < visitorCount; i++) {
+
+        ages = ages + visitors[i].age;
+    }
+
+    ages = ages / visitorCount;
+
+    return ages;
+}
 
 
-
-//testPush
-//PushTest2
+//PRESENTATION LAYER
 
 void showVisitor(VISITOR visitors)
 {
