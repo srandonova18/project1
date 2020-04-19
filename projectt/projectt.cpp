@@ -25,21 +25,24 @@ struct VISITOR {
     string lastName = "";
     short int age = 0;
     short int numberOfBooks = 0;
+    int id = 0;
     WEEK_DAYS dayOfTheWeek = WEEK_DAYS::MON;
     BOOK books[7];
 };
 
 //CRUD
 
-int findVisitorById(VISITOR* visitors, int& visitorCount, int id)
-{
-    for (int i = 0; i < visitorCount; i++)
-    {
-        if (visitors[i].id == id)
-        {
+int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {
+
+    for (int i = 0; i < visitorCount; i++) {
+
+        if (visitors[i].id == id) {
+
             return i;
         }
     }
+
+    return -1;
 }
 
 void newVisitor(VISITOR* visitors){}
@@ -66,6 +69,7 @@ void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
 VISITOR findVisitor(VISITOR* visitors, int& VisitorCount, string FirstName, string LastName) {
     
     for (int i = 0; i < VisitorCount; i++) {
+
         if (visitors[i].firstName > FirstName && visitors[i].lastName == LastName) {
 
                 showVisitor(visitors[i]);
@@ -193,7 +197,20 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId){
     }
 }
 
-int main() {}
+int main() {
+
+    int visitorCount = 0;
+    int maxId = 1;
+    VISITOR visitors[30];
+
+    bool doShowMenu = 1;
+
+    do {
+
+        doShowMenu = showMainMenu(visitors, visitorCount, maxId);
+    } while (doShowMenu);
+
+}
 
 
 
