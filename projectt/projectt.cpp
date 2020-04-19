@@ -88,7 +88,7 @@ int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, int visitorCount, WEEK_DAY
 
         if (visitors[i].dayOfTheWeek == dayOfTheWeek) {
 
-            NumberBooks = NumberBooks + visitors[i].NumberBooks;
+            NumberBooks = NumberBooks + visitors[i].numberOfBooks;
         }
     }
 
