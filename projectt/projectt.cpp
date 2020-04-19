@@ -31,7 +31,16 @@ struct VISITOR {
 
 //CRUD
 
-int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {}
+int findVisitorById(VISITOR* visitors, int& visitorCount, int id)
+{
+    for (int i = 0; i < visitorCount; i++)
+    {
+        if (visitors[i].id == id)
+        {
+            return i;
+        }
+    }
+}
 
 void newVisitor(VISITOR* visitors){}
 
