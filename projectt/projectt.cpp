@@ -82,17 +82,17 @@ int getNumberOfVisitorsPerDay(){}
 
 int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS dayOfTheWeek) {
 
-    short int NumberBooks = 0;
+    short int numberBooks = 0;
 
     for (int i = 0; i < visitorCount; i++) {
 
         if (visitors[i].dayOfTheWeek == dayOfTheWeek) {
 
-            NumberBooks = NumberBooks + visitors[i].numberOfBooks;
+            numberBooks = numberBooks + visitors[i].numberOfBooks;
         }
     }
 
-    return NumberBooks;
+    return numberBooks;
 }
 
 
