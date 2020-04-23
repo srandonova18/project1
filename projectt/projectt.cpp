@@ -45,7 +45,21 @@ int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {
     return -1;
 }
 
-void newVisitor(VISITOR* visitors){}
+void newVisitor(int NumberOfVisitors, VISITOR PI[]) {
+
+
+    for (int i = 0; i < NumberOfVisitors; i++)
+    {
+        cin >> PI[i].firstName;
+        cin >> PI[i].lastName;
+        cin >> PI[i].age;
+        cin >> PI[i].numberOfBooks;
+        cin >> PI[i].dayOfVisit;
+    }
+
+
+
+}
 
 void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int& maxId) {
 
@@ -113,8 +127,16 @@ int getAverageOfVisitorsAgesForTheWeek(VISITOR* visitors, int visitorCount) {
 
 //PRESENTATION LAYER
 
-void newVisitorMenu(){}
+void newVisitorMenu(int Choice) {
+    cout << "This is a new Visitor Menu" << endl;
+    cout << "Fill this to create a new Visitor" << newVisitor;
 
+
+
+
+
+
+}
 void showVisitorMenu(){}
 
 void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId)
