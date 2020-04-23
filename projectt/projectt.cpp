@@ -45,20 +45,12 @@ int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {
     return -1;
 }
 
-void newVisitor(int NumberOfVisitors, VISITOR PI[]) {
+void newVisitor(VISITOR* visitors, int& visitorCount, VISITOR newVisitor, int& maxId) {
 
-
-    for (int i = 0; i < NumberOfVisitors; i++)
-    {
-        cin >> PI[i].firstName;
-        cin >> PI[i].lastName;
-        cin >> PI[i].age;
-        cin >> PI[i].numberOfBooks;
-        cin >> PI[i].dayOfVisit;
-    }
-
-
-
+    newVisitor.id = maxId;
+    visitors[visitorCount] = newVisitor;
+    visitorCount++;
+    maxId++;
 }
 
 void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int& maxId) {
@@ -74,42 +66,37 @@ void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
 
     for(int i = index; i < visitorCount; i++) {
 
-        visitors[i]=visitors[i + 1];
+        visitors[i] = visitors[i + 1];
     }
 
     visitorCount--;
 }
 
-VISITOR findVisitor(VISITOR* visitors, int& VisitorCount, string FirstName, string LastName) {
+VISITOR findVisitor(VISITOR* visitors, int& visitorCount, int id) {
     
-    for (int i = 0; i < VisitorCount; i++) {
-
-        if (visitors[i].firstName > FirstName && visitors[i].lastName == LastName) {
-
-                showVisitor(visitors[i]);
-        }
-    }
-    
+    int index = findVisitorById(visitors, visitorCount, id);
+    return visitors[index];
 }
 
-int getNumberOfVisitorsPerDay(int visitorCount,VISITOR* visitors,WEEK_DAYS dayOfTheWeek){
-    int VisitorsBR = 0;
+int getNumberOfVisitorsPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS dayOfTheWeek){
+    
+    int howManyVisitors = 0;
+
     for (int i = 0; i < visitorCount; i++) {
+
         if (visitors[i].dayOfTheWeek == dayOfTheWeek) {
-            VisitorsBR++;
+
+            howManyVisitors++;
         }
     }
 
-    return VisitorsBR;
-
-    
-
+    return howManyVisitors;
 
 }
 
 int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS dayOfTheWeek) {
 
-    short int numberBooks = 0;
+    int numberBooks = 0;
 
     for (int i = 0; i < visitorCount; i++) {
 
