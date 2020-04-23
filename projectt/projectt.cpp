@@ -64,7 +64,7 @@ void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
     
     int index = findVisitorById(visitors, visitorCount, id);
 
-    for(int i = index; i < visitorCount; i++) {
+    for(int i = index; i < visitorCount-1; i++) {
 
         visitors[i] = visitors[i + 1];
     }
@@ -96,17 +96,17 @@ int getNumberOfVisitorsPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS day
 
 int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS dayOfTheWeek) {
 
-    int numberBooks = 0;
+    int howManyBooks = 0;
 
     for (int i = 0; i < visitorCount; i++) {
 
         if (visitors[i].dayOfTheWeek == dayOfTheWeek) {
 
-            numberBooks = numberBooks + visitors[i].numberOfBooks;
+            howManyBooks = howManyBooks + visitors[i].howManyBooks;
         }
     }
 
-    return numberBooks;
+    return howManyBooks;
 }
 
 
