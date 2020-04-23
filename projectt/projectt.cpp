@@ -102,7 +102,7 @@ int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, int visitorCount, WEEK_DAY
 
         if (visitors[i].dayOfTheWeek == dayOfTheWeek) {
 
-            howManyBooks = howManyBooks + visitors[i].howManyBooks;
+            howManyBooks = howManyBooks + visitors[i].numberOfBooks;
         }
     }
 
