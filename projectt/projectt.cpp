@@ -46,6 +46,12 @@ int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {
     return -1;
 }
 
+VISITOR findVisitor(VISITOR* visitors, int& visitorCount, int id) {
+
+    int index = findVisitorById(visitors, visitorCount, id);
+    return visitors[index];
+}
+
 void newVisitor(VISITOR* visitors, int& visitorCount, VISITOR newVisitor, int& maxId) {
 
     newVisitor.id = maxId;
@@ -60,7 +66,6 @@ void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int&
     visitors[index] = newVisitor;
 }
 
-
 void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
     
     int index = findVisitorById(visitors, visitorCount, id);
@@ -71,12 +76,6 @@ void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
     }
 
     visitorCount--;
-}
-
-VISITOR findVisitor(VISITOR* visitors, int& visitorCount, int id) {
-    
-    int index = findVisitorById(visitors, visitorCount, id);
-    return visitors[index];
 }
 
 int getNumberOfVisitorsPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS dayOfTheWeek){
@@ -109,7 +108,6 @@ int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, int visitorCount, WEEK_DAY
 
     return howManyBooks;
 }
-
 
 int getAverageOfVisitorsAgesForTheWeek(VISITOR* visitors, int visitorCount) {
 
@@ -182,7 +180,6 @@ WEEK_DAYS chooseDayOfTheWeek() {
     }
 
 }
-
 
 string weekDayToString(WEEK_DAYS weekDay) {
 
@@ -300,18 +297,6 @@ void showVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId){
 
 }
 
-void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
-
-    int visitorId;
-
-    cout<<"Enter visitor ID: ";
-    cin>>visitorId;
-
-    deleteVisitor(visitors, visitorCount,visitorId);
-}
-
-void showReportsMenu(){}
-
 void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
 
     int visitorId, bookIndex;
@@ -414,6 +399,66 @@ void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
         default: break;
     }
 
+
+}
+
+void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
+
+    int visitorId;
+
+    cout<<"Enter visitor ID: ";
+    cin>>visitorId;
+
+    deleteVisitor(visitors, visitorCount,visitorId);
+}
+
+void numberOfVisitorsPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
+
+    WEEK_DAYS day = chooseDayOfTheWeek();
+    cout << "The total number of visitors for " << weekDayToString(day) << " is: ";
+    cout << getNumberOfVisitorsPerDay(visitors, visitorCount, day) << endl;
+}
+
+void numberOfBooksPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
+
+    WEEK_DAYS day = chooseDayOfTheWeek();
+    cout << "The total number of books taken for " << weekDayToString(day) << " is: ";
+    cout << getNumberOfBooksBorrowedPerDay(visitors, visitorCount, day) << endl;
+}
+
+void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
+
+    short int choice;
+
+    cout << "Choose a report: " << endl;
+    cout << endl;
+    cout << "1. Get number of visitors per day" << endl;
+    cout << "2. Get number of books taken per day" << endl;
+    cout << "3. Get average of visitors' ages for the whole week" << endl;
+    cout << endl;
+    cout << "Your choice: ";
+
+    cin >> choice;
+
+    cout << endl;
+
+    switch (choice) {
+
+        case 1:
+            numberOfVisitorsPerDayReportsMenu(visitors, visitorCount);
+            break;
+
+        case 2:
+            numberOfBooksPerDayReportsMenu(visitors, visitorCount);
+            break;
+
+        case 3:
+            cout << "The average of the visitors' ages for the week is: ";
+            cout << getAverageOfVisitorsAgesForTheWeek(visitors, visitorCount) << endl;
+            break;
+
+        default: break;
+    }
 
 }
 
