@@ -102,7 +102,7 @@ int getNumberOfVisitorsPerDay(int visitorCount,VISITOR* visitors,WEEK_DAYS dayOf
 
     return VisitorsBR;
 
-
+    
 
 
 }
