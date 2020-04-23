@@ -270,7 +270,7 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
     newVisitor(visitors, visitorCount, visitor, maxId);
 }
 
-void showVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId){
+void showVisitorsMenu(VISITOR* visitors, int& visitorCount, int& maxId){
 
     cout << ".::All VISITORS::. " << endl;
 
@@ -466,57 +466,54 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId){
 
     int choice;
 
-    cout << "\nMAIN MENU" << endl;
+    cout << endl;
+    cout << "----------------" << endl;
+    cout << "   MAIN MENU" << endl;
+    cout << "----------------" << endl;
+    cout << endl;
     cout << "1. Register a new visitor" << endl;
     cout << "2. Show all visitors' profiles" << endl;
     cout << "3. Edit an existing visitor's profile" << endl;
     cout << "4. Delete an existing visitor's profile" << endl;
     cout << "5. Reports" << endl;
     cout << "6. Exit" << endl;
+    cout << endl;
     cout << "Your choice is: ";
 
     cin >> choice;
 
+    cout << endl;
+
     switch (choice) {
 
-    case 1: {
+        case 1:
+            newVisitorMenu(visitors, visitorCount, maxId);
+            break;
 
-        newVisitorMenu();
-        break;
-    }
+        case 2:
+            showVisitorsMenu(visitors, visitorCount, maxId);
+            break;
 
-    case 2: {
+        case 3:
+            editVisitorMenu(visitors, visitorCount);
+            break;
 
-        showVisitorMenu();
-        break;
-    }
+        case 4:
+            deleteVisitorMenu(visitors, visitorCount, maxId);
+            break;
 
-    case 3: {
+        case 5:
+            showReportsMenu(visitors, visitorCount, maxId);
+            break;
 
-        editVisitorMenu(visitors, visitorCount);
-        break;
-    }
+        case 6:
+            cout << "Thank you for using our program. See you soon!" << endl;
+            return false;
 
-    case 4: {
-
-        deleteVisitorMenu();
-        break;
-    }
-
-    case 5: {
-
-        showReportsMenu();
-        break;
-    }
-
-    case 6: {
-
-        return false;
-    }
-
-    default: break;
+        default: break;
 
     }
+    return true;
 }
 
 int main() {
