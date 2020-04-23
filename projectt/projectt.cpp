@@ -92,7 +92,20 @@ VISITOR findVisitor(VISITOR* visitors, int& VisitorCount, string FirstName, stri
     
 }
 
-int getNumberOfVisitorsPerDay(){}
+int getNumberOfVisitorsPerDay(int visitorCount,VISITOR* visitors,WEEK_DAYS dayOfTheWeek){
+    int VisitorsBR = 0;
+    for (int i = 0; i < visitorCount; i++) {
+        if (visitors[i].dayOfTheWeek == dayOfTheWeek) {
+            VisitorsBR++;
+        }
+    }
+
+    return VisitorsBR;
+
+
+
+
+}
 
 int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS dayOfTheWeek) {
 
