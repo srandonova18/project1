@@ -25,10 +25,10 @@ struct VISITOR {
     string firstName = "";
     string lastName = "";
     short int age = 0;
-    short int numberOfBooks = 0;
-    int id = 0;
     WEEK_DAYS dayOfTheWeek = WEEK_DAYS::MON;
+    short int numberOfBooks = 0;
     BOOK books[7];
+    int id = 0;
 };
 
 //CRUD
@@ -121,6 +121,51 @@ int getAverageOfVisitorsAgesForTheWeek(VISITOR* visitors, int visitorCount) {
     ages = ages / visitorCount;
 
     return ages;
+}
+
+void initializingData(VISITOR* visitors, int& visitorCount, int& maxId) {
+
+    newVisitor(visitors, visitorCount, { "Mark", "Jones", 23, WEEK_DAYS::SAT, 1,
+        {"The Silent Patient", "Alex Michaelides", 2019} }, maxId);
+
+    newVisitor(visitors, visitorCount, { "Miles", "Pace", 45, WEEK_DAYS::MON, 2,
+        {{"A Heartbreaking Work of Staggering Genius", "Dave Eggers", 2000},
+        {"Watership Down", "Richard Adams", 1972}} }, maxId);
+
+    newVisitor(visitors, visitorCount, { "Jessica", "Smith", 16, WEEK_DAYS::FRI, 1,
+        {"The Fault in Our Stars", "John Green", 2012} }, maxId);
+
+    newVisitor(visitors, visitorCount, { "Jay", "Horton", 47, WEEK_DAYS::SUN, 3,
+        {{"The Stand", "Sthephen King", 1978},
+        {"Confession of a Buddhist Atheist", "Stephen Batchelor", 2010},
+        {"Of Mice and Men", "John Steinbeck", 1937}} }, maxId);
+
+    newVisitor(visitors, visitorCount, { "Rebecca", "Pugh", 30, WEEK_DAYS::TUE, 1,
+        {"The Book Thief", "Markus Zusak ", 2005} }, maxId);
+
+    newVisitor(visitors, visitorCount, { "Lissette", "Fite", 52, WEEK_DAYS::FRI, 2,
+        {{"Memoirs of a Geisha", "Arthur Golden", 1997},
+        {"Lord of the Flies", "William Golding", 1954}} }, maxId);
+
+    newVisitor(visitors, visitorCount, { "John", "Deer", 50, WEEK_DAYS::SUN, 1,
+        {"Crime and Punishment", " Fyodor Dostoyevsky", 1886} }, maxId);
+
+    newVisitor(visitors, visitorCount, { "Jessica", "Rose", 18, WEEK_DAYS::WED, 1,
+        {"The Perks of Being a Wallflower", "Stephen Chbosky", 1999} }, maxId);
+
+    newVisitor(visitors, visitorCount, { "Ken", "Raynolds", 12, WEEK_DAYS::TUE, 4,
+        {{"Harry Potter and the Sorcerer's Stone", " J.K. Rowling", 1999},
+        {"Harry Potter and the Prisoner of Azkaban", "J.K. Rowling", 1999},
+        {"Harry Potter and the Order of the Phoenix", "J.K. Rowling", 2003}, 
+        {"Fantastic Beasts and Where to Find Them", "J.K. Rowling", 2001}}}, maxId);
+
+    newVisitor(visitors, visitorCount, { "Clara", "Graham", 15, WEEK_DAYS::MON, 1, 
+        {"The Lovely Bones", " Alice Sebold", 2002} }, maxId);
+
+    newVisitor(visitors, visitorCount, { "Jose", "Boardman", 13, WEEK_DAYS::SAT, 2,
+        {{"The Blood of Olympus", "Rick Riordan", 2014}, 
+        {"The Little Prince", "Antoine de Saint-Exupery", 1943}} }, maxId);
+
 }
 
 
@@ -278,6 +323,7 @@ void showVisitorsMenu(VISITOR* visitors, int& visitorCount, int& maxId){
 
     for (int i = 0; i < visitorCount; i++) {
 
+        
         cout << i + 1 << ". " << visitors[i].firstName << " " << visitors[i].lastName << ", ";
         cout << visitors[i].age << " years old ";
         cout << "visited on " << weekDayToString(visitors[i].dayOfTheWeek) << endl;
@@ -291,7 +337,7 @@ void showVisitorsMenu(VISITOR* visitors, int& visitorCount, int& maxId){
             cout << "\"" << visitors[i].books[j].title << "\" by " << visitors[i].books[j].authorName;
             cout << " released in " << visitors[i].books[j].yearOfRelease << endl;
         }
-
+        
         cout << endl;
     }
 
@@ -415,6 +461,7 @@ void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 void numberOfVisitorsPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 
     WEEK_DAYS day = chooseDayOfTheWeek();
+    cout << endl;
     cout << "The total number of visitors for " << weekDayToString(day) << " is: ";
     cout << getNumberOfVisitorsPerDay(visitors, visitorCount, day) << endl;
 }
@@ -422,6 +469,7 @@ void numberOfVisitorsPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 void numberOfBooksPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 
     WEEK_DAYS day = chooseDayOfTheWeek();
+    cout << endl;
     cout << "The total number of books taken for " << weekDayToString(day) << " is: ";
     cout << getNumberOfBooksBorrowedPerDay(visitors, visitorCount, day) << endl;
 }
@@ -520,7 +568,9 @@ int main() {
 
     int visitorCount = 0;
     int maxId = 1;
-    VISITOR visitors[30];
+    VISITOR visitors[45];
+
+    initializingData(visitors, visitorCount, maxId);
 
     bool doShowMenu = 1;
 
