@@ -568,7 +568,7 @@ int main() {
 
     int visitorCount = 0;
     int maxId = 1;
-    VISITOR visitors[45];
+    VISITOR visitors[30];
 
     initializingData(visitors, visitorCount, maxId);
 
