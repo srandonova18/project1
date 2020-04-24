@@ -70,7 +70,7 @@ void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
     
     int index = findVisitorById(visitors, visitorCount, id);
 
-    for(int i = index; i < visitorCount-1; i++) {
+    for(int i = index; i < visitorCount - 1; i++) {
 
         visitors[i] = visitors[i + 1];
     }
@@ -343,27 +343,27 @@ void showVisitorsMenu(VISITOR* visitors, int& visitorCount, int& maxId){
 
 }
 
-void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
+void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
-    int visitorId, bookIndex;
-    short int edit, bookDetail;
+    int visitorId, edit;
 
     cout << "Enter visitor's ID: ";
     cin >> visitorId;
 
     VISITOR visitor = findVisitor(visitors, visitorCount, visitorId);
 
+    cout << endl;
     cout << "Choose what you want to edit: " << endl;
     cout << endl;
     cout << "1. First name" << endl;
     cout << "2. Last name" << endl;
     cout << "3. Age" << endl;
     cout << "4. Day of visit" << endl;
-    cout << "5. Any of the books' details" << endl;
     cout << endl;
     cout << "Your choice: ";
 
     cin >> edit;
+    cout << endl;
 
     cin.ignore();
 
@@ -392,59 +392,105 @@ void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
             editVisitor(visitors, visitor, visitorCount, visitorId);
             break;
 
-        case 5:
-            cout << "Choose a book: " << endl;
-            cout << endl;
+        default: 
+            cout << "There seems to be a problem with your input. Please try again later." << endl;
+            break;
+    }
+}
 
-            for (int i = 0; i < visitor.numberOfBooks; i++) {
+void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
-                cout << i + 1 << ".\" " << visitor.books[i].title << "\" by ";
-                cout << visitor.books[i].authorName << " released in " << visitor.books[i].yearOfRelease << endl;
-            }
+    int visitorId, int bookIndex;
+    short int bookDetail;
 
-            cin >> bookIndex;
-            bookIndex--;
+    cout << "Enter visitor's ID: ";
+    cin >> visitorId;
 
-            cout << "Choose the detail you want to edit:" << endl;
-            cout << endl;
-            cout << "1. Title" << endl;
-            cout << "2. Author" << endl;
-            cout << "3. Year of release" << endl;
-            cout << endl;
-            cout << "Your choice: ";
+    VISITOR visitor = findVisitor(visitors, visitorCount, visitorId);
 
-            cin >> bookDetail;
+    cout << endl;
+    cout << "Choose a book: " << endl;
+    cout << endl;
 
-            cout << endl;
+    for (int i = 0; i < visitor.numberOfBooks; i++) {
 
-            cin.ignore();
-
-            switch (bookDetail) {
-
-                case 1:
-                    cout << "Title: ";
-                    getline(cin, visitor.books[bookIndex].title);
-                    editVisitor(visitors, visitor, visitorCount, visitorId);
-                    break;
-
-                case 2:
-                    cout << "Author: ";
-                    getline(cin, visitor.books[bookIndex].authorName);
-                    editVisitor(visitors, visitor, visitorCount, visitorId);
-                    break;
-
-                case 3:
-                    cout << "Year of release: ";
-                    cin >> visitor.books[bookIndex].yearOfRelease;
-                    editVisitor(visitors, visitor, visitorCount, visitorId);
-                    break;
-
-                default: break;
-            }
-
-        default: break;
+        cout << i + 1 << ".\" " << visitor.books[i].title << "\" by ";
+        cout << visitor.books[i].authorName << " released in " << visitor.books[i].yearOfRelease << endl;
     }
 
+    cout << "Your choice: ";
+    cin >> bookIndex;
+    bookIndex--;
+
+    cout << "What do you want to edit?" << endl;
+    cout << endl;
+    cout << "1. Title" << endl;
+    cout << "2. Author" << endl;
+    cout << "3. Year of release" << endl;
+    cout << endl;
+    cout << "Your choice: ";
+
+    cin >> bookDetail;
+
+    cout << endl;
+
+    cin.ignore();
+
+    switch (bookDetail) {
+
+        case 1:
+            cout << "Title: ";
+            getline(cin, visitor.books[bookIndex].title);
+            editVisitor(visitors, visitor, visitorCount, visitorId);
+            break;
+
+        case 2:
+            cout << "Author: ";
+            getline(cin, visitor.books[bookIndex].authorName);
+            editVisitor(visitors, visitor, visitorCount, visitorId);
+            break;
+
+        case 3:
+            cout << "Year of release: ";
+            cin >> visitor.books[bookIndex].yearOfRelease;
+            editVisitor(visitors, visitor, visitorCount, visitorId);
+            break;
+
+        default: 
+            cout << "There seems to be a problem with your input. Please try again later." << endl;
+            break;
+    }
+
+}
+
+void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
+
+    short int edit;
+
+    cout << "What do you want to edit?" << endl;
+    cout << endl;
+    cout << "1. Visitor's profile details" << endl;
+    cout << "2. Visitor's books' taken details" << endl;
+    cout << endl;
+    cout << "Your choice is: ";
+
+    cin >> edit;
+    cout << endl;
+
+    switch (edit) {
+
+        case 1: 
+            editVisitorDetailsMenu(visitors, visitorCount);
+            break;
+
+        case 2:
+            editBooksDetailsMenu(visitors, visitorCount);
+            break;
+
+        default: 
+            cout << "There seems to be a problem with your input. Please try again later. " << endl;
+            break;
+    }
 
 }
 
@@ -505,7 +551,9 @@ void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
             cout << getAverageOfVisitorsAgesForTheWeek(visitors, visitorCount) << endl;
             break;
 
-        default: break;
+        default: 
+            cout<<"There seems to be a problem with your input. Please try again later."<<endl;
+            break;
     }
 
 }
@@ -558,9 +606,12 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId){
             cout << "Thank you for using our program. See you soon!" << endl;
             return false;
 
-        default: break;
+        default: 
+            cout << "There seems to be a problem with your input. Please try again later." << endl;
+            break;
 
     }
+
     return true;
 }
 
