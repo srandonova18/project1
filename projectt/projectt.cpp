@@ -353,7 +353,7 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
     VISITOR visitor = findVisitor(visitors, visitorCount, visitorId);
 
     cout << endl;
-    cout << "Choose what you want to edit: " << endl;
+    cout << "What would you want to edit?" << endl;
     cout << endl;
     cout << "1. First name" << endl;
     cout << "2. Last name" << endl;
@@ -400,7 +400,7 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
-    int visitorId, int bookIndex;
+    int visitorId, bookIndex;
     short int bookDetail;
 
     cout << "Enter visitor's ID: ";
@@ -409,7 +409,7 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
     VISITOR visitor = findVisitor(visitors, visitorCount, visitorId);
 
     cout << endl;
-    cout << "Choose a book: " << endl;
+    cout << "Which book's detail would you want to edit? " << endl;
     cout << endl;
 
     for (int i = 0; i < visitor.numberOfBooks; i++) {
@@ -422,7 +422,7 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
     cin >> bookIndex;
     bookIndex--;
 
-    cout << "What do you want to edit?" << endl;
+    cout << "What would you want to edit?" << endl;
     cout << endl;
     cout << "1. Title" << endl;
     cout << "2. Author" << endl;
@@ -467,7 +467,7 @@ void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
 
     short int edit;
 
-    cout << "What do you want to edit?" << endl;
+    cout << "What would you want to edit?" << endl;
     cout << endl;
     cout << "1. Visitor's profile details" << endl;
     cout << "2. Visitor's books' taken details" << endl;
