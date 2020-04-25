@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-//the idea behinf the code is a library
+//the idea behind the code is a library
 
 //structure with information about the books
 struct BOOK {
@@ -11,7 +11,7 @@ struct BOOK {
     short int yearOfRelease = 0;
 };
 
-//declaring the days of the week
+//declaring the enum with the days of the week
 enum class WEEK_DAYS {
 
     MON,
@@ -37,17 +37,17 @@ struct VISITOR {
 
 //CRUD
 
-//function which finds a particular visitor by specific id 
+//function which finds a particular visitor by a specific id 
 int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {
     
         for (int i = 0; i < visitorCount; i++) {
-            //condition that is checking if the id of the visitor equals the given id 
+            //if statement that finds the visitor with the same id as the one entered
             if (visitors[i].id == id) {
 
             return i;
         }
     }
-//returns error
+//if the id entered isn't found in the array of visitors
     return -1;
 }
 
@@ -58,7 +58,7 @@ VISITOR findVisitor(VISITOR* visitors, int& visitorCount, int id) {
     return visitors[index];
 }
 
-//function that is adding new visitors in the system
+//function for adding new visitors in the system
 void newVisitor(VISITOR* visitors, int& visitorCount, VISITOR newVisitor, int& maxId) {
 //visitor's id assigns to the maximum id
     newVisitor.id = maxId;
@@ -67,17 +67,17 @@ void newVisitor(VISITOR* visitors, int& visitorCount, VISITOR newVisitor, int& m
     maxId++;
 }
 
-//function which gives you the option to edit a particular visior
+//function which gives you the option to edit a particular visitor
 void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int& maxId) {
 
     int index = findVisitorById(visitors, visitorsCount, maxId);
     visitors[index] = newVisitor;
 }
 
-//function that deletes a particular visior by pushing him away
+//function that deletes a particular visitor by pushing him away
 void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
     
-    //the function about finding visior assigns the index
+    //the function about finding visitor assigns the index
     int index = findVisitorById(visitors, visitorCount, id);
 
     for(int i = index; i < visitorCount - 1; i++) {
@@ -86,7 +86,7 @@ void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
         visitors[i] = visitors[i + 1];
     }
     
-    //the last index is delted by decreasing the counter
+    //the last index is deleted by decreasing the counter
     visitorCount--;
 }
 
