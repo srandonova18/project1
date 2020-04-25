@@ -285,7 +285,7 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
     visitor.dayOfTheWeek = chooseDayOfTheWeek();
 
     cout << endl;
-    cout << "How many books did they take? : ";
+    cout << "How many books did they borrow? : ";
     cin >> visitor.numberOfBooks;
 
     cout << endl;
@@ -329,7 +329,7 @@ void showVisitorsMenu(VISITOR* visitors, int& visitorCount, int& maxId){
         cout << "visited on " << weekDayToString(visitors[i].dayOfTheWeek) << endl;
 
         cout << endl;
-        cout << ".::LIST OF BOOKS TAKEN::." << endl;
+        cout << ".::LIST OF BORROWED BOOKS::." << endl;
         cout << endl;
 
         for (int j = 0; j < visitors[i].numberOfBooks; j++) {
@@ -398,6 +398,25 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
     }
 }
 
+void showAllBorrowedBooksMenu(VISITOR* visitors, int& visitorCount) {
+
+    int bookNumber = 1;
+
+    cout << endl;
+    cout << ".::LIST OF ALL BORROWED BOOKS::." << endl;
+    cout << endl;
+
+    for (int i = 0; i < visitorCount; i++) {
+
+        for (int j = 0; j < visitors[i].numberOfBooks; j++) {
+
+            cout << bookNumber << ". \"" << visitors[i].books[j].title << "\" by ";
+            cout << visitors[i].books[j].authorName << " released in " << visitors[i].books[j].yearOfRelease << endl;
+            bookNumber++;
+        }
+    }
+}
+
 void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
     int visitorId, bookIndex;
@@ -414,7 +433,7 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
     for (int i = 0; i < visitor.numberOfBooks; i++) {
 
-        cout << i + 1 << ".\" " << visitor.books[i].title << "\" by ";
+        cout << i + 1 << ".\"" << visitor.books[i].title << "\" by ";
         cout << visitor.books[i].authorName << " released in " << visitor.books[i].yearOfRelease << endl;
     }
 
@@ -470,7 +489,7 @@ void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
     cout << "What would you want to edit?" << endl;
     cout << endl;
     cout << "1. Visitor's profile details" << endl;
-    cout << "2. Visitor's books' taken details" << endl;
+    cout << "2. Visitor's borrowed books' details" << endl;
     cout << endl;
     cout << "Your choice is: ";
 
@@ -516,7 +535,7 @@ void numberOfBooksPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 
     WEEK_DAYS day = chooseDayOfTheWeek();
     cout << endl;
-    cout << "The total number of books taken for " << weekDayToString(day) << " is: ";
+    cout << "The total number of borrowed books for " << weekDayToString(day) << " is: ";
     cout << getNumberOfBooksBorrowedPerDay(visitors, visitorCount, day) << endl;
 }
 
@@ -527,7 +546,7 @@ void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
     cout << "Choose a report: " << endl;
     cout << endl;
     cout << "1. Get number of visitors per day" << endl;
-    cout << "2. Get number of books taken per day" << endl;
+    cout << "2. Get number of books borrowed per day" << endl;
     cout << "3. Get average of visitors' ages for the whole week" << endl;
     cout << endl;
     cout << "Your choice: ";
@@ -569,10 +588,11 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId){
     cout << endl;
     cout << "1. Register a new visitor" << endl;
     cout << "2. Show all visitors' profiles" << endl;
-    cout << "3. Edit an existing visitor's profile" << endl;
-    cout << "4. Delete an existing visitor's profile" << endl;
-    cout << "5. Reports" << endl;
-    cout << "6. Exit" << endl;
+    cout << "3. Show all books borrowed for the week" << endl;
+    cout << "4. Edit an existing visitor's profile" << endl;
+    cout << "5. Delete an existing visitor's profile" << endl;
+    cout << "6. Reports" << endl;
+    cout << "7. Exit" << endl;
     cout << endl;
     cout << "Your choice is: ";
 
@@ -591,18 +611,22 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId){
             break;
 
         case 3:
-            editVisitorMenu(visitors, visitorCount);
+            showAllBorrowedBooksMenu(visitors, visitorCount);
             break;
 
         case 4:
-            deleteVisitorMenu(visitors, visitorCount, maxId);
+            editVisitorMenu(visitors, visitorCount);
             break;
 
         case 5:
-            showReportsMenu(visitors, visitorCount, maxId);
+            deleteVisitorMenu(visitors, visitorCount, maxId);
             break;
 
         case 6:
+            showReportsMenu(visitors, visitorCount, maxId);
+            break;
+
+        case 7:
             cout << "Thank you for using our program. See you soon!" << endl;
             return false;
 
