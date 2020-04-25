@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
 using namespace std;
+//the idea behinf the code is a library
 
+//structure with information about the books
 struct BOOK {
 
     string title = "";
@@ -9,6 +11,7 @@ struct BOOK {
     short int yearOfRelease = 0;
 };
 
+//declaring the days of the week
 enum class WEEK_DAYS {
 
     MON,
@@ -20,6 +23,7 @@ enum class WEEK_DAYS {
     SUN
 };
 
+//structure with information about the visitors
 struct VISITOR {
 
     string firstName = "";
@@ -33,59 +37,71 @@ struct VISITOR {
 
 //CRUD
 
+//function which finds a particular visitor by specific id 
 int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {
-
-    for (int i = 0; i < visitorCount; i++) {
-
-        if (visitors[i].id == id) {
+    
+        for (int i = 0; i < visitorCount; i++) {
+            //condition that is checking if the id of the visitor equals the given id 
+            if (visitors[i].id == id) {
 
             return i;
         }
     }
-
+//returns error
     return -1;
 }
 
+//function which finds a particular visitor
 VISITOR findVisitor(VISITOR* visitors, int& visitorCount, int id) {
 
     int index = findVisitorById(visitors, visitorCount, id);
     return visitors[index];
 }
 
+//function that is adding new visitors in the system
 void newVisitor(VISITOR* visitors, int& visitorCount, VISITOR newVisitor, int& maxId) {
-
+//visitor's id assigns to the maximum id
     newVisitor.id = maxId;
     visitors[visitorCount] = newVisitor;
     visitorCount++;
     maxId++;
 }
 
+//function which gives you the option to edit a particular visior
 void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int& maxId) {
 
     int index = findVisitorById(visitors, visitorsCount, maxId);
     visitors[index] = newVisitor;
 }
 
+//function that deletes a particular visior by pushing him away
 void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
     
+    //the function about finding visior assigns the index
     int index = findVisitorById(visitors, visitorCount, id);
 
     for(int i = index; i < visitorCount - 1; i++) {
 
+        //visitor's index icreases with 1
         visitors[i] = visitors[i + 1];
     }
-
+    
+    //the last index is delted by decreasing the counter
     visitorCount--;
 }
 
+//function that gives you information about all the visitors per day
 int getNumberOfVisitorsPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS dayOfTheWeek){
     
+    //giving value of variable that shows how many visitors the library had 
     int howManyVisitors = 0;
 
     for (int i = 0; i < visitorCount; i++) {
-
+        
+        //condition that checks if the day that the user has given is declarte in the structure WEEK_DAYS
         if (visitors[i].dayOfTheWeek == dayOfTheWeek) {
 
+            //incresing the variable
             howManyVisitors++;
         }
     }
@@ -94,12 +110,15 @@ int getNumberOfVisitorsPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS day
 
 }
 
+//function that gives you information about all the books that are borrowed per day
 int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS dayOfTheWeek) {
 
+    //giving value of variable that shows how many books are boworred of the library 
     int howManyBooks = 0;
 
     for (int i = 0; i < visitorCount; i++) {
 
+        //condition that checks if the day that the user has given is declarte in the structure WEEK_DAYS
         if (visitors[i].dayOfTheWeek == dayOfTheWeek) {
 
             howManyBooks = howManyBooks + visitors[i].numberOfBooks;
@@ -109,8 +128,10 @@ int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, int visitorCount, WEEK_DAY
     return howManyBooks;
 }
 
+//function that gives you information about the average age of the visitor for a week
 int getAverageOfVisitorsAgesForTheWeek(VISITOR* visitors, int visitorCount) {
 
+//giving value of variable for the age
     short int ages = 0;
 
     for (int i = 0; i < visitorCount; i++) {
@@ -171,6 +192,7 @@ void initializingData(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 //PRESENTATION LAYER
 
+
 WEEK_DAYS chooseDayOfTheWeek() {
 
     short int day;
@@ -226,6 +248,7 @@ WEEK_DAYS chooseDayOfTheWeek() {
 
 }
 
+//function that helps the enum to transform in words providing the days of the week
 string weekDayToString(WEEK_DAYS weekDay) {
 
     switch (weekDay) {
@@ -513,6 +536,7 @@ void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
 
 }
 
+//function deleting by id
 void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
     int visitorId;
@@ -522,6 +546,7 @@ void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
     deleteVisitor(visitors, visitorCount,visitorId);
 }
+
 
 void numberOfVisitorsPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 
