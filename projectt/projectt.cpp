@@ -51,6 +51,21 @@ int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {
     return -1;
 }
 
+//function which finds a particular visitor by a specific year of release
+int findVisitorByYearOfRelease(VISITOR* visitors, int& visitorCount, short int yearOfRelease) {
+    
+        for (int i = 0; i < visitorCount; i++) {
+            //if statement that finds the visitor with the same year of release as the one entered
+            if (BOOK.yearOfRelease == yearOfRelease) {
+
+            return i;
+        }
+    }
+//if the year entered isn't found in the array of visitors
+    return -1;
+}
+
+
 //function which finds a particular visitor
 VISITOR findVisitor(VISITOR* visitors, int& visitorCount, int id) {
 
@@ -86,7 +101,7 @@ void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
         visitors[i] = visitors[i + 1];
     }
     
-    //the last index is deleted by decreasing the counter
+    //the last index is delested by decreasing the counter
     visitorCount--;
 }
 
