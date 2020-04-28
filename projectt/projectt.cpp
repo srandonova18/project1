@@ -303,7 +303,7 @@ string weekDayToString(WEEK_DAYS weekDay) {
     return " ";
 
 }
-
+//function that add new visitor
 void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
    
     VISITOR visitor;
@@ -352,7 +352,7 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
     newVisitor(visitors, visitorCount, visitor, maxId);
 }
-
+//function that show us all visitors
 void showVisitorsMenu(VISITOR* visitors, int& visitorCount, int& maxId){
 
     cout << ".::All VISITORS::. " << endl;
@@ -380,7 +380,7 @@ void showVisitorsMenu(VISITOR* visitors, int& visitorCount, int& maxId){
     }
 
 }
-
+//function that edit the visitor's ID
 void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
     int visitorId, edit;
@@ -435,7 +435,7 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
             break;
     }
 }
-
+// function that show us all the books who were borrowed
 void showAllBorrowedBooksMenu(VISITOR* visitors, int& visitorCount) {
 
     int bookNumber = 1;
@@ -454,7 +454,7 @@ void showAllBorrowedBooksMenu(VISITOR* visitors, int& visitorCount) {
         }
     }
 }
-
+//function that edit book details to the visitor
 void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
     int visitorId, bookIndex;
@@ -519,7 +519,7 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
     }
 
 }
-
+//function that edit all the visitor's data.
 void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
 
     short int edit;
@@ -562,7 +562,7 @@ void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
     deleteVisitor(visitors, visitorCount,visitorId);
 }
 
-
+//function that reports the visitors per day
 void numberOfVisitorsPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 
     WEEK_DAYS day = chooseDayOfTheWeek();
@@ -570,7 +570,7 @@ void numberOfVisitorsPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
     cout << "The total number of visitors for " << weekDayToString(day) << " is: ";
     cout << getNumberOfVisitorsPerDay(visitors, visitorCount, day) << endl;
 }
-
+//function that show the borrowed books per day
 void numberOfBooksPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 
     WEEK_DAYS day = chooseDayOfTheWeek();
@@ -616,7 +616,7 @@ void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
     }
 
 }
-
+//function where  you can choose what do you want to see
 bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId){
 
     int choice;
@@ -695,7 +695,3 @@ int main() {
     } while (doShowMenu);
 
 }
-
-
-
-
