@@ -365,7 +365,6 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	VISITOR visitor;
 	string message;
-	short int day;
 
 	cin.ignore();
 
@@ -430,7 +429,16 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 		cout << "Year of release: ";
 		cin >> visitor.books[i].yearOfRelease;
-		
+		message = "Year of release: ";
+		visitor.books[i].yearOfRelease = readInt(message);
+		while (visitor.books[i].yearOfRelease < 1455 or visitor.books[i].yearOfRelease > 2020) {
+
+			cout << "There seems to be something wrong with your input. Please try again." << endl;
+			cout << endl;
+			cout << "Year of release: ";
+			cin >> visitor.books[i].yearOfRelease;
+		}
+
 		cin.ignore();
 
 		cout << endl;
@@ -564,6 +572,7 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 	int visitorId, bookIndex;
 	short int bookDetail;
+	string message;
 
 	cout << "Enter visitor's ID: ";
 	cin >> visitorId;
@@ -615,6 +624,17 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	case 3:
 		cout << "Year of release: ";
 		cin >> visitor.books[bookIndex].yearOfRelease;
+		message = "Year of release: ";
+		visitor.books[bookIndex].yearOfRelease = readInt(message);
+		while (visitor.books[bookIndex].yearOfRelease < 1455 or visitor.books[bookIndex].yearOfRelease > 2020) {
+
+			cout << "There seems to be something wrong with your input. Please try again." << endl;
+			cout << endl;
+			cout << "Year of release: ";
+			cin >> visitor.books[bookIndex].yearOfRelease;
+		}
+
+
 		editVisitor(visitors, visitor, visitorCount, visitorId);
 		break;
 
