@@ -399,6 +399,18 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	cout << endl;
 	cout << "How many books did they borrow? : ";
 	cin >> visitor.numberOfBooks;
+	message = "How many books did they borrow? : ";
+	visitor.numberOfBooks = readInt(message);
+	while (visitor.numberOfBooks < 1 or visitor.numberOfBooks > 7) {
+
+		cout << "There seems to be a problem with your input. " << endl;
+		cout << "Please notice that the minimum amount of books a visitor can borrow is 1 ";
+		cout << "and the maximum amount is 7. " << endl;
+		cout << endl;
+		cout << "How many books did they borrow? : ";
+		cin >> visitor.numberOfBooks;
+	}
+
 
 	cout << endl;
 
