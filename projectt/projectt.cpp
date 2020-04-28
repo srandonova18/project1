@@ -482,6 +482,15 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 	cout << "Enter visitor's ID: ";
 	cin >> visitorId;
+	message = "Enter visitor's ID: ";
+	visitorId = readInt(message);
+	while (visitorId <= 0 or visitorId > visitorCount) {
+
+		cout << "There seems to be a problem with your input. ";
+		cout << "Please try again." << endl;
+		cout << "Enter visitor's ID: ";
+		visitorId = readInt(message);
+	}
 
 	VISITOR visitor = findVisitor(visitors, visitorCount, visitorId);
 
