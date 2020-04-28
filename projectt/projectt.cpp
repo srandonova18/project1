@@ -81,6 +81,22 @@ void newVisitor(VISITOR* visitors, int& visitorCount, VISITOR newVisitor, int& m
 	visitorCount++;
 	maxId++;
 }
+int getBorrowedBooksByTitle(VISITOR* visitors, int visitorCount, BOOK* result, int resultCount, string title)
+{
+	int index = 0;
+	for (int i = 0; i < visitorCount; i++)
+	{
+		for (int j = 0; j < visitors[i].numberOfBooks; j++)
+		{
+			if (visitors[i].books[j].title == title)
+			{
+				result[index++] = visitors[i].books[j];
+			}
+		}
+	}
+
+	return index;
+}
 
 //function which gives you the option to edit a particular visitor
 void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int& maxId) {
