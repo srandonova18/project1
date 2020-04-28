@@ -613,6 +613,46 @@ void numberOfBooksPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 	cout << getNumberOfBooksBorrowedPerDay(visitors, visitorCount, day) << endl;
 }
 
+void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
+
+	short int choice;
+
+	cout << "Choose a detail: " << endl;
+	cout << endl; 
+	cout << "1. Show all borrowed books by title" << endl;
+	cout << "2. Show all borrowed books by author" << endl;
+	cout << "3. Show all borrowed books by year" << endl;
+	cout << endl;
+	cout << "Your choice: ";
+
+	cin >> choice;
+
+	cout << endl;
+
+	switch (choice) {
+
+	case 1:
+		getBorrowedBooksByTitle(visitors, visitorCount);
+		break;
+
+	case 2:
+		getBorrowedBooksByAuthor(visitors, visitorCount);
+		break;
+
+	case 3:
+		cout << "The average of the visitors' ages for the week is: ";
+		cout << getAverageOfVisitorsAgesForTheWeek(visitors, visitorCount) << endl;
+		break;
+
+	default:
+		cout << "There seems to be a problem with your input. Please try again later." << endl;
+		break;
+	}
+
+}
+
+
+
 void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	short int choice;
@@ -665,8 +705,9 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	cout << "3. Show all books borrowed for the week" << endl;
 	cout << "4. Edit an existing visitor's profile" << endl;
 	cout << "5. Delete an existing visitor's profile" << endl;
-	cout << "6. Reports" << endl;
-	cout << "7. Exit" << endl;
+	cout << "6.Find a borrowed book by a detail" << endl;
+	cout << "7. Reports" << endl;
+	cout << "8. Exit" << endl;
 	cout << endl;
 	cout << "Your choice is: ";
 
@@ -697,10 +738,14 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 		break;
 
 	case 6:
-		showReportsMenu(visitors, visitorCount, maxId);
+		showBorrowedBooksByADetailMenu(visitors, visitorCount,maxId);
 		break;
 
 	case 7:
+		showReportsMenu(visitors, visitorCount, maxId);
+		break;
+
+	case 8:
 		cout << "Thank you for using our program. See you soon!" << endl;
 		return false;
 
