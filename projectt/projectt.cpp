@@ -14,6 +14,7 @@ struct BOOK {
 //declaring the enum with the days of the week
 enum class WEEK_DAYS {
 
+	UNKNOWN,
 	MON,
 	TUE,
 	WED,
@@ -70,7 +71,6 @@ int getBorrowedBooksByYearOfRelease(VISITOR* visitors, int visitorCount, BOOK* r
 }
 
 
-
 //function which finds a particular visitor
 VISITOR findVisitor(VISITOR* visitors, int& visitorCount, int id) {
 
@@ -86,6 +86,7 @@ void newVisitor(VISITOR* visitors, int& visitorCount, VISITOR newVisitor, int& m
 	visitorCount++;
 	maxId++;
 }
+
 int getBorrowedBooksByTitle(VISITOR* visitors, int visitorCount, BOOK* result, int resultCount, string title)
 {
 	int index = 0;
@@ -243,9 +244,7 @@ void initializingData(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 }
 
-
 //PRESENTATION LAYER
-
 
 WEEK_DAYS chooseDayOfTheWeek() {
 
@@ -297,6 +296,7 @@ WEEK_DAYS chooseDayOfTheWeek() {
 		break;
 
 	default:
+		return WEEK_DAYS::UNKNOWN;
 		break;
 	}
 
@@ -360,6 +360,12 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	cin >> visitor.age;
 
 	visitor.dayOfTheWeek = chooseDayOfTheWeek();
+	while (visitor.dayOfTheWeek == WEEK_DAYS::UNKNOWN) {
+
+		cout << "There seems to be a problem with your input. ";
+		cout << "Please enter the number of a valid day of the week from the list." << endl;
+		visitor.dayOfTheWeek = chooseDayOfTheWeek();
+	}
 
 	cout << endl;
 	cout << "How many books did they borrow? : ";
@@ -383,7 +389,7 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 		cout << "Year of release: ";
 		cin >> visitor.books[i].yearOfRelease;
-
+		
 		cin.ignore();
 
 		cout << endl;
@@ -466,6 +472,12 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 	case 4:
 		visitor.dayOfTheWeek = chooseDayOfTheWeek();
+		while (visitor.dayOfTheWeek == WEEK_DAYS::UNKNOWN) {
+
+			cout << "There seems to be a problem with your input. ";
+			cout << "Please enter the number of a valid day of the week from the list." << endl;
+			visitor.dayOfTheWeek = chooseDayOfTheWeek();
+		}
 		editVisitor(visitors, visitor, visitorCount, visitorId);
 		break;
 
@@ -493,6 +505,7 @@ void showAllBorrowedBooksMenu(VISITOR* visitors, int& visitorCount) {
 		}
 	}
 }
+
 //function that edit book details to the visitor
 void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
