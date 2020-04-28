@@ -364,6 +364,7 @@ string weekDayToString(WEEK_DAYS weekDay) {
 void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	VISITOR visitor;
+	string message;
 	short int day;
 
 	cin.ignore();
@@ -376,6 +377,16 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	cout << "Age: ";
 	cin >> visitor.age;
+	message = "Age: ";
+	visitor.age = readInt(message);
+	while (visitor.age < 10 or visitor.age > 117) {
+
+		cout << "There seems to be a problem with your input. " << endl;
+		cout << "Please notice that the visitor should be at least 10 years old. " << endl;
+		cout << endl;
+		cout << "Age: ";
+		cin >> visitor.age;
+	}
 
 	visitor.dayOfTheWeek = chooseDayOfTheWeek();
 	while (visitor.dayOfTheWeek == WEEK_DAYS::UNKNOWN) {
@@ -446,6 +457,7 @@ void showVisitorsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 //function that edit the visitor's ID
 void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
+	string message;
 	int visitorId, edit;
 
 	cout << "Enter visitor's ID: ";
@@ -485,6 +497,17 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	case 3:
 		cout << "Age: ";
 		cin >> visitor.age;
+		message = "Age: ";
+		visitor.age = readInt(message);
+		while (visitor.age < 10 or visitor.age > 117) {
+
+			cout << "There seems to be a problem with your input. " << endl;
+			cout << "Please notice that the visitor should be at least 10 years old." << endl;
+			cout << endl;
+			cout << "Age: ";
+			cin >> visitor.age;
+		}
+
 		editVisitor(visitors, visitor, visitorCount, visitorId);
 		break;
 
