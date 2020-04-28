@@ -52,18 +52,23 @@ int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {
 }
 
 //function which finds a particular visitor by a specific year of release
-//int findVisitorByYearOfRelease(VISITOR* visitors, int& visitorCount, short int yearOfRelease) {
+int getBorrowedBooksByYearOfRelease(VISITOR* visitors, int visitorCount, BOOK* result, int resultCount, short int yearOfRelease)
+{
+	int index = 0;
+	for (int i = 0; i < visitorCount; i++)
+	{
+		for (int j = 0; j < visitors[i].numberOfBooks; j++)
+		{
+			if (visitors[i].books[j].yearOfRelease == yearOfRelease)
+			{
+				result[index++] = visitors[i].books[j];
+			}
+		}
+	}
 
-		//for (int i = 0; i < visitorCount; i++) {
-			//if statement that finds the visitor with the same year of release as the one entered
-		   // if (BOOK.yearOfRelease == yearOfRelease) {
+	return index;
+}
 
-			//return i;
-	   // }
-  //  }
-//if the year entered isn't found in the array of visitors
-  //  return -1;
-//}
 
 
 //function which finds a particular visitor
@@ -613,6 +618,25 @@ void numberOfBooksPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 	cout << getNumberOfBooksBorrowedPerDay(visitors, visitorCount, day) << endl;
 }
 
+void getBorrowedBooksByTitleMenu(VISITOR* visitors, int& visitorCount) {
+
+
+
+}
+
+void getBorrowedBooksByAuthorMenu(VISITOR* visitors, int& visitorCount) {
+
+
+
+}
+
+void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
+
+
+
+}
+
+
 void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	short int choice;
@@ -632,16 +656,15 @@ void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount, int& m
 	switch (choice) {
 
 	case 1:
-		getBorrowedBooksByTitle(visitors, visitorCount);
+		getBorrowedBooksByTitleMenu(visitors, visitorCount);
 		break;
 
 	case 2:
-		getBorrowedBooksByAuthor(visitors, visitorCount);
+		getBorrowedBooksByAuthorMenu(visitors, visitorCount);
 		break;
 
 	case 3:
-		cout << "The average of the visitors' ages for the week is: ";
-		cout << getAverageOfVisitorsAgesForTheWeek(visitors, visitorCount) << endl;
+		getBorrowedBooksByYearOfReleaseMenu(visitors, visitorCount);
 		break;
 
 	default:
