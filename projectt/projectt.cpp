@@ -199,6 +199,24 @@ int getAverageOfVisitorsAgesForTheWeek(VISITOR* visitors, int visitorCount) {
 	return ages;
 }
 
+int readInt(string message) {
+
+	int number;
+
+	while (!(cin >> number)) {
+
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << endl;
+		cout << "There seems to be a problem with your input. " << endl;
+		cout << "Please keep in mind that you should enter a number." << endl;
+		cout << endl;
+		cout << message;
+	}
+
+	return number;
+}
+
 void initializingData(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	newVisitor(visitors, visitorCount, { "Mark", "Jones", 23, WEEK_DAYS::SAT, 1,
