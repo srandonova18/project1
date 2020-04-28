@@ -56,12 +56,13 @@ int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {
 int getBorrowedBooksByYearOfRelease(VISITOR* visitors, int visitorCount, BOOK* result, int resultCount, short int yearOfRelease)
 {
 	int index = 0;
-	for (int i = 0; i < visitorCount; i++)
-	{
-		for (int j = 0; j < visitors[i].numberOfBooks; j++)
-		{
-			if (visitors[i].books[j].yearOfRelease == yearOfRelease)
-			{
+
+	for (int i = 0; i < visitorCount; i++) {
+
+		for (int j = 0; j < visitors[i].numberOfBooks; j++) {
+
+			if (visitors[i].books[j].yearOfRelease == yearOfRelease) {
+
 				result[index++] = visitors[i].books[j];
 			}
 		}
@@ -90,12 +91,13 @@ void newVisitor(VISITOR* visitors, int& visitorCount, VISITOR newVisitor, int& m
 int getBorrowedBooksByTitle(VISITOR* visitors, int visitorCount, BOOK* result, int resultCount, string title)
 {
 	int index = 0;
-	for (int i = 0; i < visitorCount; i++)
-	{
-		for (int j = 0; j < visitors[i].numberOfBooks; j++)
-		{
-			if (visitors[i].books[j].title == title)
-			{
+
+	for (int i = 0; i < visitorCount; i++) {
+
+		for (int j = 0; j < visitors[i].numberOfBooks; j++) {
+
+			if (visitors[i].books[j].title == title) {
+
 				result[index++] = visitors[i].books[j];
 			}
 		}
@@ -150,12 +152,13 @@ int getNumberOfVisitorsPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS day
 int getBorrowedBooksByAuthor(VISITOR* visitors, int visitorCount, BOOK* results, int resultCount, string authorName)
 {
 	int index = 0;
-	for (int i = 0; i < visitorCount; i++)
-	{
-		for (int j = 0; j < visitors[i].numberOfBooks; j++)
-		{
-			if (visitors[i].books[j].authorName == authorName)
-			{
+
+	for (int i = 0; i < visitorCount; i++) {
+
+		for (int j = 0; j < visitors[i].numberOfBooks; j++) {
+
+			if (visitors[i].books[j].authorName == authorName) {
+
 				results[index++] = visitors[i].books[j];
 			}
 		}
@@ -360,6 +363,7 @@ string weekDayToString(WEEK_DAYS weekDay) {
 	return " ";
 
 }
+
 //function that add new visitor
 void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
@@ -495,7 +499,7 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	VISITOR visitor = findVisitor(visitors, visitorCount, visitorId);
 
 	cout << endl;
-	cout << "What would you want to edit?" << endl;
+	cout << "What would you like to edit?" << endl;
 	cout << endl;
 	cout << "1. First name" << endl;
 	cout << "2. Last name" << endl;
@@ -589,7 +593,7 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	VISITOR visitor = findVisitor(visitors, visitorCount, visitorId);
 
 	cout << endl;
-	cout << "Which book's detail would you want to edit? " << endl;
+	cout << "Which book's detail would you like to edit? " << endl;
 	cout << endl;
 
 	for (int i = 0; i < visitor.numberOfBooks; i++) {
@@ -602,7 +606,7 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	cin >> bookIndex;
 	bookIndex--;
 
-	cout << "What would you want to edit?" << endl;
+	cout << "What would you like to edit?" << endl;
 	cout << endl;
 	cout << "1. Title" << endl;
 	cout << "2. Author" << endl;
@@ -658,7 +662,7 @@ void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
 
 	short int edit;
 
-	cout << "What would you want to edit?" << endl;
+	cout << "What would you like to edit?" << endl;
 	cout << endl;
 	cout << "1. Visitor's profile details" << endl;
 	cout << "2. Visitor's borrowed books' details" << endl;
@@ -823,7 +827,7 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	cout << "3. Show all books borrowed for the week" << endl;
 	cout << "4. Edit an existing visitor's profile" << endl;
 	cout << "5. Delete an existing visitor's profile" << endl;
-	cout << "6.Find a borrowed book by a detail" << endl;
+	cout << "6. Find a borrowed book by a detail" << endl;
 	cout << "7. Reports" << endl;
 	cout << "8. Exit" << endl;
 	cout << endl;
