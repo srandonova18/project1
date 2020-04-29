@@ -488,15 +488,15 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	string message;
 	int visitorId, edit;
 
-	cout << "Enter visitor's ID: ";
-	cin >> visitorId;
 	message = "Enter visitor's ID: ";
+	cout << message;
 	visitorId = readInt(message);
-	while (visitorId <= 0 or visitorId > visitorCount) {
+	while (visitorId < 1 or visitorId > visitorCount) {
 
 		cout << "There seems to be a problem with your input. ";
 		cout << "Please try again." << endl;
-		cout << "Enter visitor's ID: ";
+		cout << endl;
+		cout << message;
 		visitorId = readInt(message);
 	}
 
@@ -532,17 +532,17 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 		break;
 
 	case 3:
-		cout << "Age: ";
-		cin >> visitor.age;
 		message = "Age: ";
+		cout << message;
 		visitor.age = readInt(message);
+
 		while (visitor.age < 10 or visitor.age > 117) {
 
 			cout << "There seems to be a problem with your input. " << endl;
 			cout << "Please notice that the visitor should be at least 10 years old." << endl;
 			cout << endl;
 			cout << "Age: ";
-			cin >> visitor.age;
+			visitor.age = readInt(message);
 		}
 
 		editVisitor(visitors, visitor, visitorCount, visitorId);
@@ -606,10 +606,12 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 		cout << visitor.books[i].authorName << " released in " << visitor.books[i].yearOfRelease << endl;
 	}
 
+	cout << endl;
 	cout << "Your choice: ";
 	cin >> bookIndex;
 	bookIndex--;
 
+	cout << endl;
 	cout << "What would you like to edit?" << endl;
 	cout << endl;
 	cout << "1. Title" << endl;
@@ -639,18 +641,17 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 		break;
 
 	case 3:
-		cout << "Year of release: ";
-		cin >> visitor.books[bookIndex].yearOfRelease;
 		message = "Year of release: ";
+		cout << message;
 		visitor.books[bookIndex].yearOfRelease = readInt(message);
+
 		while (visitor.books[bookIndex].yearOfRelease < 1455 or visitor.books[bookIndex].yearOfRelease > 2020) {
 
 			cout << "There seems to be something wrong with your input. Please try again." << endl;
 			cout << endl;
-			cout << "Year of release: ";
-			cin >> visitor.books[bookIndex].yearOfRelease;
+			cout << message;
+			visitor.books[bookIndex].yearOfRelease = readInt(message);
 		}
-
 
 		editVisitor(visitors, visitor, visitorCount, visitorId);
 		break;
