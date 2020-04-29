@@ -87,6 +87,7 @@ void newVisitor(VISITOR* visitors, int& visitorCount, VISITOR newVisitor, int& m
 	visitorCount++;
 	maxId++;
 }
+
 int getBorrowedBooksByTitle(VISITOR* visitors, int visitorCount, BOOK* result, string title)
 {
 	int index = 0;
@@ -591,8 +592,17 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	short int bookDetail;
 	string message;
 
-	cout << "Enter visitor's ID: ";
-	cin >> visitorId;
+	message = "Enter visitor's ID: ";
+	cout << message;
+	visitorId = readInt(message);
+	while (visitorId < 1 or visitorId > visitorCount) {
+
+		cout << "There seems to be a problem with your input. ";
+		cout << "Please try again." << endl;
+		cout << endl;
+		cout << message;
+		visitorId = readInt(message);
+	}
 
 	VISITOR visitor = findVisitor(visitors, visitorCount, visitorId);
 
@@ -607,8 +617,18 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	}
 
 	cout << endl;
-	cout << "Your choice: ";
-	cin >> bookIndex;
+	message = "Your choice: ";
+	cout << message;
+	bookIndex = readInt(message);
+
+	while (bookIndex < 0 or bookIndex > visitor.numberOfBooks) {
+
+		cout << "There seems to be a problem with your input. ";
+		cout << "Please try again." << endl;
+		cout << endl;
+		cout << message;
+		bookIndex = readInt(message);
+	}
 	bookIndex--;
 
 	cout << endl;
@@ -618,10 +638,19 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	cout << "2. Author" << endl;
 	cout << "3. Year of release" << endl;
 	cout << endl;
-	cout << "Your choice: ";
+	cout << message;
 
-	cin >> bookDetail;
+	bookDetail = readInt(message);
 
+	while (bookDetail < 1 or bookDetail > 3) {
+
+		cout << "There seems to be a problem with your input. ";
+		cout << "Remember that your only options are either 1, 2 or 3." << endl;
+		cout << "Please try again." << endl;
+		cout << endl;
+		cout << message;
+		bookDetail = readInt(message);
+	}
 	cout << endl;
 
 	cin.ignore();
@@ -666,15 +695,28 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
 
 	short int edit;
+	string message;
 
 	cout << "What would you like to edit?" << endl;
 	cout << endl;
 	cout << "1. Visitor's profile details" << endl;
 	cout << "2. Visitor's borrowed books' details" << endl;
 	cout << endl;
-	cout << "Your choice is: ";
 
-	cin >> edit;
+	message = "Your choice: ";
+	cout << message;
+	edit = readInt(message);
+
+	while (edit < 1 or edit > 2) {
+
+		cout << endl;
+		cout << "There seems to be a problem with your input. " << endl;
+		cout << "Remember that your only options are either 1 or 2." << endl;
+		cout << "Please try again." << endl;
+		cout << endl;
+		cout << message;
+		edit = readInt(message);
+	}
 	cout << endl;
 
 	switch (edit) {
@@ -698,9 +740,20 @@ void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
 void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	int visitorId;
+	string message;
 
-	cout << "Enter visitor ID: ";
-	cin >> visitorId;
+	message = "Enter visitor's ID: ";
+	cout << message;
+	visitorId = readInt(message);
+	while (visitorId < 1 or visitorId > visitorCount) {
+
+		cout << endl;
+		cout << "There seems to be a problem with your input. ";
+		cout << "Please try again." << endl;
+		cout << endl;
+		cout << message;
+		visitorId = readInt(message);
+	}
 
 	deleteVisitor(visitors, visitorCount, visitorId);
 }
@@ -776,6 +829,7 @@ void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
 void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount) {
 
 	short int choice;
+	string message;
 
 	cout << "Choose a detail: " << endl;
 	cout << endl; 
@@ -783,10 +837,21 @@ void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount) {
 	cout << "2. Show all borrowed books by author" << endl;
 	cout << "3. Show all borrowed books by year" << endl;
 	cout << endl;
-	cout << "Your choice: ";
+	message = "Your choice: ";
+	cout << message;
 
-	cin >> choice;
+	choice = readInt(message);
 
+	while (choice < 1 or choice > 3) {
+
+		cout << endl;
+		cout << "There seems to be a problem with your input. " << endl;
+		cout << "Remember that your only options are either 1, 2 or 3." << endl;
+		cout << "Please try again." << endl;
+		cout << endl;
+		cout << message;
+		choice = readInt(message);
+	}
 	cout << endl;
 
 	switch (choice) {
@@ -813,6 +878,7 @@ void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount) {
 void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	short int choice;
+	string message;
 
 	cout << "Choose a report: " << endl;
 	cout << endl;
@@ -820,10 +886,21 @@ void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	cout << "2. Get number of books borrowed per day" << endl;
 	cout << "3. Get average of visitors' ages for the whole week" << endl;
 	cout << endl;
-	cout << "Your choice: ";
+	message = "Your choice: ";
+	cout << message;
 
-	cin >> choice;
+	choice = readInt(message);
 
+	while (choice < 1 or choice > 3) {
+
+		cout << endl;
+		cout << "There seems to be a problem with your input. " << endl;
+		cout << "Remember that your only options are either 1, 2 or 3." << endl;
+		cout << "Please try again." << endl;
+		cout << endl;
+		cout << message;
+		choice = readInt(message);
+	}
 	cout << endl;
 
 	switch (choice) {
@@ -851,6 +928,7 @@ void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	int choice;
+	string message;
 
 	cout << endl;
 	cout << "----------------" << endl;
@@ -866,12 +944,23 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	cout << "7. Reports" << endl;
 	cout << "8. Exit" << endl;
 	cout << endl;
-	cout << "Your choice is: ";
+	message = "Your choice: ";
+	cout << message;
 
-	cin >> choice;
+	choice = readInt(message);
 
+	while (choice < 1 or choice > 8) {
+
+		cout << endl;
+		cout << "There seems to be a problem with your input. " << endl;
+		cout << "Remember that your only options are the number between 1 and 8 (including)." << endl;
+		cout << "Please try again." << endl;
+		cout << endl;
+		cout << message;
+		choice = readInt(message);
+	}
 	cout << endl;
-
+	
 	switch (choice) {
 
 	case 1:
