@@ -24,16 +24,14 @@ enum class WEEK_DAYS {
 	SUN
 };
 
-typedef unsigned char byte;
-
 //structure with information about the visitors
 struct VISITOR {
 
 	string firstName = "";
 	string lastName = "";
-	byte age = 0;
+	short int age = 0;
 	WEEK_DAYS dayOfTheWeek = WEEK_DAYS::MON;
-	byte numberOfBooks = 0;
+	short int numberOfBooks = 0;
 	BOOK books[7];
 	int id = 0;
 };
@@ -357,6 +355,10 @@ string weekDayToString(WEEK_DAYS weekDay) {
 		return "Sunday";
 		break;
 
+	case WEEK_DAYS::UNKNOWN:
+		return "There seems to be an error.";
+		break;
+
 	default:
 		break;
 	}
@@ -379,17 +381,16 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	cout << "Last name: ";
 	getline(cin, visitor.lastName);
 
-	cout << "Age: ";
-	cin >> visitor.age;
 	message = "Age: ";
+	cout << message;
 	visitor.age = readInt(message);
 	while (visitor.age < 10 or visitor.age > 117) {
 
-		cout << "There seems to be a problem with your input. " << endl;
-		cout << "Please notice that the visitor should be at least 10 years old. " << endl;
-		cout << endl;
-		cout << "Age: ";
-		cin >> visitor.age;
+			cout << "There seems to be a problem with your input. " << endl;
+			cout << "Please notice that the visitor should be at least 10 years old. " << endl;
+			cout << endl;
+			cout << "Age: ";
+			visitor.age = readInt(message);
 	}
 
 	visitor.dayOfTheWeek = chooseDayOfTheWeek();
@@ -402,18 +403,19 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	}
 
 	cout << endl;
-	cout << "How many books did they borrow? : ";
-	cin >> visitor.numberOfBooks;
-	message = "How many books did they borrow? : ";
+
+	message = "How many books did they borrow?: ";
+	cout << message;
 	visitor.numberOfBooks = readInt(message);
-	while (visitor.numberOfBooks < 1 or visitor.numberOfBooks > 7) {
+
+	while (visitor.numberOfBooks <= 0 or visitor.numberOfBooks > 7) {
 
 		cout << "There seems to be a problem with your input. " << endl;
 		cout << "Please notice that the minimum amount of books a visitor can borrow is 1 ";
 		cout << "and the maximum amount is 7. " << endl;
 		cout << endl;
-		cout << "How many books did they borrow? : ";
-		cin >> visitor.numberOfBooks;
+		cout << message;
+		visitor.numberOfBooks = readInt(message);
 	}
 
 
@@ -433,16 +435,16 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 		cout << "Author: ";
 		getline(cin, visitor.books[i].authorName);
 
-		cout << "Year of release: ";
-		cin >> visitor.books[i].yearOfRelease;
 		message = "Year of release: ";
+		cout << message;
 		visitor.books[i].yearOfRelease = readInt(message);
+
 		while (visitor.books[i].yearOfRelease < 1455 or visitor.books[i].yearOfRelease > 2020) {
 
 			cout << "There seems to be something wrong with your input. Please try again." << endl;
 			cout << endl;
-			cout << "Year of release: ";
-			cin >> visitor.books[i].yearOfRelease;
+			cout << message;
+			visitor.books[i].yearOfRelease = readInt(message);
 		}
 
 		cin.ignore();
@@ -807,8 +809,6 @@ void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount) {
 
 }
 
-
-
 void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	short int choice;
@@ -918,7 +918,7 @@ int main() {
 
 	int visitorCount = 0;
 	int maxId = 1;
-	VISITOR visitors[100];
+	VISITOR visitors[20];
 
 	initializingData(visitors, visitorCount, maxId);
 
