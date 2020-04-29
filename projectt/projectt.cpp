@@ -52,7 +52,7 @@ int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {
 }
 
 //function which finds a particular visitor by a specific year of release
-int getBorrowedBooksByYearOfRelease(VISITOR* visitors, int visitorCount, BOOK* result, int resultCount, short int yearOfRelease)
+int getBorrowedBooksByYearOfRelease(VISITOR* visitors, int visitorCount, BOOK* result,/* int resultCount,*/ short int yearOfRelease)
 {
 	int index = 0;
 	for (int i = 0; i < visitorCount; i++)
@@ -86,7 +86,7 @@ void newVisitor(VISITOR* visitors, int& visitorCount, VISITOR newVisitor, int& m
 	visitorCount++;
 	maxId++;
 }
-int getBorrowedBooksByTitle(VISITOR* visitors, int visitorCount, BOOK* result, int resultCount, string title)
+int getBorrowedBooksByTitle(VISITOR* visitors, int visitorCount, BOOK* result, string title)
 {
 	int index = 0;
 	for (int i = 0; i < visitorCount; i++)
@@ -619,21 +619,34 @@ void numberOfBooksPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 }
 
 void getBorrowedBooksByTitleMenu(VISITOR* visitors, int& visitorCount) {
-
-	
-
-}
-
-void getBorrowedBooksByAuthorMenu(VISITOR* visitors, int& visitorCount, BOOK *result) {
 	cin.ignore();
-	string a;
-	cout << "Enter author name: "; getline(cin, a);
-	int size = getBorrowedBooksByAuthor(visitors, visitorCount, result, a);
+	string title;
+	BOOK* results;
+	int bookNumber = 1;
+	cout << "Enter author name: "; 
+	getline(cin, title);
+	int size = getBorrowedBooksByTitle(visitors, visitorCount, results, title);
 	for (int i = 0; i < size; i++)
 	{
-		cout << result[i].title << " ";
-		cout << result[i].authorName << " ";
-		cout << result[i].yearOfRelease << endl;
+		cout << bookNumber << ". \"" << results[i].title << "\" by ";
+		cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
+		bookNumber++;
+	}
+}
+
+void getBorrowedBooksByAuthorMenu(VISITOR* visitors, int& visitorCount ) {
+	cin.ignore();
+	BOOK* results;
+	string authorName;
+	int bookNumber=1;
+
+	cout << "Enter author name: "; getline(cin, authorName);
+	int size = getBorrowedBooksByAuthor(visitors, visitorCount, results, authorName);
+	for (int i = 0; i < size; i++)
+	{
+		cout << bookNumber << ". \"" << results[i].title << "\" by ";
+		cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
+		bookNumber++;
 	}
 
 
@@ -641,14 +654,25 @@ void getBorrowedBooksByAuthorMenu(VISITOR* visitors, int& visitorCount, BOOK *re
 
 void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
 
+	BOOK* results;
+	int year, bookNumber = 1;
 
+	cout << "Enter author name: "; cin>> year;
+	int size = getBorrowedBooksByYearOfRelease(visitors, visitorCount, results, year);
+	for (int i = 0; i < size; i++)
+	{
+		cout << bookNumber << ". \"" << results[i].title << "\" by ";
+		cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
+		bookNumber++;
+	}
 
 }
 
 
-void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount, int& maxId,BOOK *result) {
+void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount) {
 
 	short int choice;
+	BOOK* result;
 
 	cout << "Choose a detail: " << endl;
 	cout << endl; 
@@ -737,7 +761,7 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId,BOOK*result) 
 	cout << "3. Show all books borrowed for the week" << endl;
 	cout << "4. Edit an existing visitor's profile" << endl;
 	cout << "5. Delete an existing visitor's profile" << endl;
-	cout << "6.Find a borrowed book by a detail" << endl;
+	cout << "6. Find a borrowed book by a detail" << endl;
 	cout << "7. Reports" << endl;
 	cout << "8. Exit" << endl;
 	cout << endl;
@@ -770,7 +794,7 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId,BOOK*result) 
 		break;
 
 	case 6:
-		showBorrowedBooksByADetailMenu(visitors, visitorCount,result);
+		showBorrowedBooksByADetailMenu(visitors, visitorCount);
 		break;
 
 	case 7:
