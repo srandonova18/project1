@@ -24,14 +24,16 @@ enum class WEEK_DAYS {
 	SUN
 };
 
+typedef unsigned char byte;
+
 //structure with information about the visitors
 struct VISITOR {
 
 	string firstName = "";
 	string lastName = "";
-	short int age = 0;
+	byte age = 0;
 	WEEK_DAYS dayOfTheWeek = WEEK_DAYS::MON;
-	short int numberOfBooks = 0;
+	byte numberOfBooks = 0;
 	BOOK books[7];
 	int id = 0;
 };
@@ -148,7 +150,7 @@ int getNumberOfVisitorsPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS day
 
 }
 
-int getBorrowedBooksByAuthor(VISITOR* visitors, int visitorCount, BOOK* results, int resultCount, string authorName)
+int getBorrowedBooksByAuthor(VISITOR* visitors, int visitorCount, BOOK* results, string authorName)
 {
 	int index = 0;
 
@@ -391,6 +393,7 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	}
 
 	visitor.dayOfTheWeek = chooseDayOfTheWeek();
+
 	while (visitor.dayOfTheWeek == WEEK_DAYS::UNKNOWN) {
 
 		cout << "There seems to be a problem with your input. ";
@@ -719,7 +722,7 @@ void numberOfBooksPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 void getBorrowedBooksByTitleMenu(VISITOR* visitors, int& visitorCount) {
 	cin.ignore();
 	string title;
-	BOOK* results;
+	BOOK results[30];
 	int bookNumber = 1;
 	cout << "Enter author name: "; 
 	getline(cin, title);
@@ -734,7 +737,7 @@ void getBorrowedBooksByTitleMenu(VISITOR* visitors, int& visitorCount) {
 
 void getBorrowedBooksByAuthorMenu(VISITOR* visitors, int& visitorCount ) {
 	cin.ignore();
-	BOOK* results;
+	BOOK results[30];
 	string authorName;
 	int bookNumber=1;
 
@@ -752,7 +755,7 @@ void getBorrowedBooksByAuthorMenu(VISITOR* visitors, int& visitorCount ) {
 
 void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
 
-	BOOK* results;
+	BOOK results[30];
 	int year, bookNumber = 1;
 
 	cout << "Enter author name: "; cin>> year;
@@ -915,7 +918,7 @@ int main() {
 
 	int visitorCount = 0;
 	int maxId = 1;
-	VISITOR visitors[30];
+	VISITOR visitors[100];
 
 	initializingData(visitors, visitorCount, maxId);
 
