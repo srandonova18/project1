@@ -672,7 +672,6 @@ void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
 void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount) {
 
 	short int choice;
-	BOOK* result;
 
 	cout << "Choose a detail: " << endl;
 	cout << endl; 
@@ -747,7 +746,7 @@ void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 }
 //function where  you can choose what do you want to see
-bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId,BOOK*result) {
+bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	int choice;
 
