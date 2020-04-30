@@ -19,17 +19,17 @@ void editBooksDetailsMenu(VISITOR*, int&);
 
 void editVisitorMenu(VISITOR*, int&);
 
-void deleteVisitorMenu(VISITOR*, int&, int&);
-
-void numberOfVisitorsPerDayReportsMenu(VISITOR*, int&);
-
-void numberOfBooksPerDayReportsMenu(VISITOR*, int&);
-
 void getBorrowedBooksByTitleMenu(VISITOR*, int&);
 
 void getBorrowedBooksByAuthorMenu(VISITOR*, int&);
 
 void getBorrowedBooksByYearOfReleaseMenu(VISITOR*, int&);
+
+void deleteVisitorMenu(VISITOR*, int&, int&);
+
+void numberOfVisitorsPerDayReportsMenu(VISITOR*, int&);
+
+void numberOfBooksPerDayReportsMenu(VISITOR*, int&);
 
 void showBorrowedBooksByADetailMenu(VISITOR*, int&);
 

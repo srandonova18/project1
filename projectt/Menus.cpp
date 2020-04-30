@@ -123,6 +123,7 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	message = "Age: ";
 	cout << message;
 	visitor.age = readInt(message);
+
 	while (visitor.age < 10 or visitor.age > 117) {
 
 		cout << "There seems to be a problem with your input. " << endl;
@@ -230,6 +231,7 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	message = "Enter visitor's ID: ";
 	cout << message;
 	visitorId = readInt(message);
+
 	while (visitorId < 1 or visitorId > visitorCount) {
 
 		cout << "There seems to be a problem with your input. ";
@@ -289,6 +291,7 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 		case 4:
 			visitor.dayOfTheWeek = chooseDayOfTheWeek();
+
 			while (visitor.dayOfTheWeek == WEEK_DAYS::UNKNOWN) {
 
 				cout << "There seems to be a problem with your input. ";
@@ -333,6 +336,7 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	message = "Enter visitor's ID: ";
 	cout << message;
 	visitorId = readInt(message);
+
 	while (visitorId < 1 or visitorId > visitorCount) {
 
 		cout << "There seems to be a problem with your input. ";
@@ -474,6 +478,118 @@ void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
 
 }
 
+
+void getBorrowedBooksByTitleMenu(VISITOR* visitors, int& visitorCount) {
+
+	cin.ignore();
+	string title;
+	BOOK results[30];
+	int bookNumber = 1;
+
+	cout << "Enter title: ";
+	getline(cin, title);
+
+	int resultsSize = getBorrowedBooksByTitle(visitors, visitorCount, results, title);
+
+	for (int i = 0; i < resultsSize; i++) {
+
+		cout << bookNumber << ". \"" << results[i].title << "\" by ";
+		cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
+		bookNumber++;
+	}
+}
+
+void getBorrowedBooksByAuthorMenu(VISITOR* visitors, int& visitorCount) {
+
+	cin.ignore();
+	BOOK results[30];
+	string authorName;
+	int bookNumber = 1;
+
+	cout << "Enter author name: ";
+	getline(cin, authorName);
+
+	int resultsSize = getBorrowedBooksByAuthor(visitors, visitorCount, results, authorName);
+
+	for (int i = 0; i < resultsSize; i++) {
+
+		cout << bookNumber << ". \"" << results[i].title << "\" by ";
+		cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
+		bookNumber++;
+	}
+
+
+}
+
+void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
+
+	BOOK results[30];
+	int year, bookNumber = 1;
+
+	cout << "Enter year of release: "; 
+	cin >> year;
+
+	int resultsSize = getBorrowedBooksByYearOfRelease(visitors, visitorCount, results, year);
+
+	for (int i = 0; i < resultsSize; i++) {
+
+		cout << bookNumber << ". \"" << results[i].title << "\" by ";
+		cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
+		bookNumber++;
+	}
+
+}
+
+
+void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount) {
+
+	short int choice;
+	string message;
+
+	cout << "Choose a detail: " << endl;
+	cout << endl;
+	cout << "1. Show all borrowed books by title" << endl;
+	cout << "2. Show all borrowed books by author" << endl;
+	cout << "3. Show all borrowed books by year of release" << endl;
+	cout << endl;
+	message = "Your choice: ";
+	cout << message;
+
+	choice = readInt(message);
+
+	while (choice < 1 or choice > 3) {
+
+		cout << endl;
+		cout << "There seems to be a problem with your input. " << endl;
+		cout << "Remember that your only options are either 1, 2 or 3." << endl;
+		cout << "Please try again." << endl;
+		cout << endl;
+		cout << message;
+		choice = readInt(message);
+	}
+	cout << endl;
+
+	switch (choice) {
+
+		case 1:
+			getBorrowedBooksByTitleMenu(visitors, visitorCount);
+			break;
+
+		case 2:
+			getBorrowedBooksByAuthorMenu(visitors, visitorCount);
+			break;
+
+		case 3:
+			getBorrowedBooksByYearOfReleaseMenu(visitors, visitorCount);
+			break;
+
+		default:
+			cout << "There seems to be a problem with your input. Please try again later." << endl;
+			break;
+	}
+
+}
+
 //function deleting by id
 void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
@@ -513,102 +629,6 @@ void numberOfBooksPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 	cout << getNumberOfBooksBorrowedPerDay(visitors, visitorCount, day) << endl;
 }
 
-void getBorrowedBooksByTitleMenu(VISITOR* visitors, int& visitorCount) {
-	cin.ignore();
-	string title;
-	BOOK results[30];
-	int bookNumber = 1;
-	cout << "Enter author name: ";
-	getline(cin, title);
-	int size = getBorrowedBooksByTitle(visitors, visitorCount, results, title);
-	for (int i = 0; i < size; i++) {
-		cout << bookNumber << ". \"" << results[i].title << "\" by ";
-		cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
-		bookNumber++;
-	}
-}
-
-void getBorrowedBooksByAuthorMenu(VISITOR* visitors, int& visitorCount) {
-	cin.ignore();
-	BOOK results[30];
-	string authorName;
-	int bookNumber = 1;
-
-	cout << "Enter author name: "; getline(cin, authorName);
-	int size = getBorrowedBooksByAuthor(visitors, visitorCount, results, authorName);
-	for (int i = 0; i < size; i++) {
-		cout << bookNumber << ". \"" << results[i].title << "\" by ";
-		cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
-		bookNumber++;
-	}
-
-
-}
-
-void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
-
-	BOOK results[30];
-	int year, bookNumber = 1;
-
-	cout << "Enter author name: "; cin >> year;
-	int size = getBorrowedBooksByYearOfRelease(visitors, visitorCount, results, year);
-	for (int i = 0; i < size; i++) {
-		cout << bookNumber << ". \"" << results[i].title << "\" by ";
-		cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
-		bookNumber++;
-	}
-
-}
-
-
-void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount) {
-
-	short int choice;
-	string message;
-
-	cout << "Choose a detail: " << endl;
-	cout << endl;
-	cout << "1. Show all borrowed books by title" << endl;
-	cout << "2. Show all borrowed books by author" << endl;
-	cout << "3. Show all borrowed books by year" << endl;
-	cout << endl;
-	message = "Your choice: ";
-	cout << message;
-
-	choice = readInt(message);
-
-	while (choice < 1 or choice > 3) {
-
-		cout << endl;
-		cout << "There seems to be a problem with your input. " << endl;
-		cout << "Remember that your only options are either 1, 2 or 3." << endl;
-		cout << "Please try again." << endl;
-		cout << endl;
-		cout << message;
-		choice = readInt(message);
-	}
-	cout << endl;
-
-	switch (choice) {
-
-		case 1:
-			getBorrowedBooksByTitleMenu(visitors, visitorCount);
-			break;
-
-		case 2:
-			getBorrowedBooksByAuthorMenu(visitors, visitorCount);
-			break;
-
-		case 3:
-			getBorrowedBooksByYearOfReleaseMenu(visitors, visitorCount);
-			break;
-
-		default:
-			cout << "There seems to be a problem with your input. Please try again later." << endl;
-			break;
-	}
-
-}
 
 void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
