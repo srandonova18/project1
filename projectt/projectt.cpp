@@ -4,8 +4,8 @@
 #include "Data.h"
 #include "Menus.h"
 using namespace std;
-//the idea behind the code is a library
 
+//the idea behind the code is a library
 
 int main() {
 

@@ -5,9 +5,11 @@ using namespace std;
 
 //PRESENTATION LAYER
 
+//menu for choosing a day of the week when needed
 WEEK_DAYS chooseDayOfTheWeek() {
 
 	short int day;
+	string message;
 
 	cout << endl;
 	cout << "Choose the day of the visit:" << endl;
@@ -20,9 +22,19 @@ WEEK_DAYS chooseDayOfTheWeek() {
 	cout << "5. Saturday" << endl;
 	cout << "6. Sunday" << endl;
 	cout << endl;
-	cout << "Your choice: ";
+	
+	message = "Your choice: ";
+	cout << message;
+	day = readInt(message);
 
-	cin >> day;
+	while (day < 0 or day > 6) {
+
+		cout << "There seems to be a problem with your input. ";
+		cout << "Please try again." << endl;
+		cout << endl;
+		cout << message;
+		day = readInt(message);
+	}
 
 	switch (day) {
 
@@ -55,7 +67,7 @@ WEEK_DAYS chooseDayOfTheWeek() {
 			break;
 
 		default:
-			return WEEK_DAYS::UNKNOWN;
+			return WEEK_DAYS::UNKNOWN; //if there isn't a correct option chosen
 			break;
 	}
 
