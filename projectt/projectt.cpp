@@ -11,7 +11,7 @@ int main() {
 
 	int visitorCount = 0;
 	int maxId = 1;
-	VISITOR visitors[35];
+	VISITOR visitors[30];
 
 	initializingData(visitors, visitorCount, maxId);
 
