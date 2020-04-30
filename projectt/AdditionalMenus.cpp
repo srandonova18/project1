@@ -371,6 +371,8 @@ void getBorrowedBooksByTitleMenu(VISITOR* visitors, int& visitorCount) {
 		cout << endl;
 	} else {
 
+		cout << ".::LIST OF BOOKS FOUND::." << endl;
+		cout << endl;
 		for (int i = 0; i < resultsSize; i++) {
 
 			cout << bookNumber << ". \"" << results[i].title << "\" by ";
@@ -403,6 +405,8 @@ void getBorrowedBooksByAuthorMenu(VISITOR* visitors, int& visitorCount) {
 		cout << endl;
 	} else {
 
+		cout << ".::LIST OF BOOKS FOUND::." << endl;
+		cout << endl;
 		for (int i = 0; i < resultsSize; i++) {
 
 			cout << bookNumber << ". \"" << results[i].title << "\" by ";
@@ -426,13 +430,15 @@ void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
 	//checks if the input is acceptable
 	year = readInt(message);
 
-	while (year< 1455 or year > 2020) {
+	while (year < 1455 or year > 2020) {
 
 		cout << "There seems to be something wrong with your input. Please try again." << endl;
 		cout << endl;
 		cout << message;
 		year = readInt(message);
 	}
+
+	cout << endl;
 
 	//calling the function for finding the wanted books 
 	int resultsSize = getBorrowedBooksByYearOfRelease(visitors, visitorCount, results, year);
@@ -445,6 +451,8 @@ void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
 		cout << endl;
 	} else {
 
+		cout << ".::LIST OF BOOKS FOUND::." << endl;
+		cout << endl;
 		for (int i = 0; i < resultsSize; i++) {
 
 			cout << bookNumber << ". \"" << results[i].title << "\" by ";
