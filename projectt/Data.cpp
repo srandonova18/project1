@@ -8,12 +8,14 @@ using namespace std;
 int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {
 
 	for (int i = 0; i < visitorCount; i++) {
+
 		//if statement that finds the visitor with the same id as the one entered
 		if (visitors[i].id == id) {
 
 			return i;
 		}
 	}
+
 	//if the id entered isn't found in the array of visitors
 	return -1;
 }
@@ -21,15 +23,18 @@ int findVisitorById(VISITOR* visitors, int& visitorCount, int id) {
 //function which finds a particular visitor
 VISITOR findVisitor(VISITOR* visitors, int& visitorCount, int id) {
 
+	//calling the function for finding a visitor by entered ID
 	int index = findVisitorById(visitors, visitorCount, id);
 	return visitors[index];
 }
 
 //function for adding new visitors in the system
 void newVisitor(VISITOR* visitors, int& visitorCount, VISITOR newVisitor, int& maxId) {
+
 	//visitor's id assigns to the maximum id
 	newVisitor.id = maxId;
 	visitors[visitorCount] = newVisitor;
+	//increasing the value for visitorCount and maxId with 1
 	visitorCount++;
 	maxId++;
 }
@@ -37,11 +42,16 @@ void newVisitor(VISITOR* visitors, int& visitorCount, VISITOR newVisitor, int& m
 //function which gives you the option to edit a particular visitor
 void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int& maxId) {
 
+	//calling the function for finding a visitor by entered ID
 	int index = findVisitorById(visitors, visitorsCount, maxId);
 	visitors[index] = newVisitor;
 }
 
+//filter functions
+
+//function for getting the books written by a specific author
 int getBorrowedBooksByAuthor(VISITOR* visitors, int visitorCount, BOOK* results, string authorName) {
+
 	int index = 0;
 
 	for (int i = 0; i < visitorCount; i++) {
@@ -50,6 +60,7 @@ int getBorrowedBooksByAuthor(VISITOR* visitors, int visitorCount, BOOK* results,
 
 			if (visitors[i].books[j].authorName == authorName) {
 
+				//adding the matches to a result array (if there are any)
 				results[index++] = visitors[i].books[j];
 			}
 		}
@@ -58,7 +69,9 @@ int getBorrowedBooksByAuthor(VISITOR* visitors, int visitorCount, BOOK* results,
 	return index;
 }
 
+//function for getting the books with a specific title
 int getBorrowedBooksByTitle(VISITOR* visitors, int visitorCount, BOOK* result, string title) {
+
 	int index = 0;
 
 	for (int i = 0; i < visitorCount; i++) {
@@ -67,6 +80,7 @@ int getBorrowedBooksByTitle(VISITOR* visitors, int visitorCount, BOOK* result, s
 
 			if (visitors[i].books[j].title == title) {
 
+				//adding the matches to a result array (if there are any)
 				result[index++] = visitors[i].books[j];
 			}
 		}
@@ -75,8 +89,9 @@ int getBorrowedBooksByTitle(VISITOR* visitors, int visitorCount, BOOK* result, s
 	return index;
 }
 
-//function which finds a particular visitor by a specific year of release
+//function for getting the books with a specific year of release
 int getBorrowedBooksByYearOfRelease(VISITOR* visitors, int visitorCount, BOOK* result, short int yearOfRelease) {
+
 	int index = 0;
 
 	for (int i = 0; i < visitorCount; i++) {
@@ -85,6 +100,7 @@ int getBorrowedBooksByYearOfRelease(VISITOR* visitors, int visitorCount, BOOK* r
 
 			if (visitors[i].books[j].yearOfRelease == yearOfRelease) {
 
+				//adding the matches to a result array (if there are any)
 				result[index++] = visitors[i].books[j];
 			}
 		}
@@ -93,7 +109,7 @@ int getBorrowedBooksByYearOfRelease(VISITOR* visitors, int visitorCount, BOOK* r
 	return index;
 }
 
-//function that deletes a particular visitor by pushing him away
+//function that "deletes" a particular visitor by pushing them away
 void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
 
 	//the function about finding visitor assigns the index
@@ -109,18 +125,17 @@ void deleteVisitor(VISITOR* visitors, int& visitorCount, int id) {
 	visitorCount--;
 }
 
-//function that gives you information about all the visitors per day
+//function that gives you information about the number of visitors per day of the week
 int getNumberOfVisitorsPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS dayOfTheWeek) {
 
-	//giving value of variable that shows how many visitors the library had 
 	int howManyVisitors = 0;
 
 	for (int i = 0; i < visitorCount; i++) {
 
-		//condition that checks if the day that the user has given is declarte in the structure WEEK_DAYS
+		//condition that finds all visitors with the same day of visit as the one entered
 		if (visitors[i].dayOfTheWeek == dayOfTheWeek) {
 
-			//incresing the variable
+			//incresing the counter
 			howManyVisitors++;
 		}
 	}
@@ -129,17 +144,17 @@ int getNumberOfVisitorsPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS day
 
 }
 
-//function that gives you information about all the books that are borrowed per day
+//function that gives you information about the number of borrowed books per day
 int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, int visitorCount, WEEK_DAYS dayOfTheWeek) {
 
-	//giving value of variable that shows how many books are boworred of the library 
 	int howManyBooks = 0;
 
 	for (int i = 0; i < visitorCount; i++) {
 
-		//condition that checks if the day that the user has given is declarte in the structure WEEK_DAYS
+		///condition that finds all visitors with the same day of visit as the one entered
 		if (visitors[i].dayOfTheWeek == dayOfTheWeek) {
 
+			//sums alll values from the numberOfBooks fields
 			howManyBooks = howManyBooks + visitors[i].numberOfBooks;
 		}
 	}
@@ -147,26 +162,29 @@ int getNumberOfBooksBorrowedPerDay(VISITOR* visitors, int visitorCount, WEEK_DAY
 	return howManyBooks;
 }
 
-//function that gives you information about the average age of the visitor for a week
+//function that gives you information about the average age of the visitors for the week
 int getAverageOfVisitorsAgesForTheWeek(VISITOR* visitors, int visitorCount) {
 
-	//giving value of variable for the age
 	short int ages = 0;
 
 	for (int i = 0; i < visitorCount; i++) {
 
+		//sums all the values form the age fields
 		ages = ages + visitors[i].age;
 	}
 
+	//divides the sum by the number of visitors
 	ages = ages / visitorCount;
 
 	return ages;
 }
 
+//function that checks if the value entered is an integer
 int readInt(string message) {
 
 	int number;
 
+	//while loop until the value entered is an integer
 	while (!(cin >> number)) {
 
 		cin.clear();
@@ -175,13 +193,17 @@ int readInt(string message) {
 		cout << "There seems to be a problem with your input. " << endl;
 		cout << "Please keep in mind that you should enter a number." << endl;
 		cout << endl;
+		//shows different messages depending on the function it is used in
 		cout << message;
 	}
 
 	return number;
 }
 
+//function for initializing already entered data
 void initializingData(VISITOR* visitors, int& visitorCount, int& maxId) {
+
+	//adds new visitors to the main array with the newVisitor() function
 
 	newVisitor(visitors, visitorCount, { "Mark", "Jones", 23, WEEK_DAYS::SAT, 1,
 		{"The Silent Patient", "Alex Michaelides", 2019} }, maxId);
