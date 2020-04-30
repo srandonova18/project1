@@ -13,10 +13,12 @@ int main() {
 	int maxId = 1;
 	VISITOR visitors[30];
 
+	//function which initializes some data (data base like)
 	initializingData(visitors, visitorCount, maxId);
 
 	bool doShowMenu = 1;
 
+	//loop for showing the main menu unless exit option is chosen
 	do {
 
 		doShowMenu = showMainMenu(visitors, visitorCount, maxId);
