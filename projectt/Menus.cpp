@@ -25,6 +25,7 @@ WEEK_DAYS chooseDayOfTheWeek() {
 	
 	message = "Your choice: ";
 	cout << message;
+	//checks if the input is acceptable
 	day = readInt(message);
 
 	while (day < 0 or day > 6) {
@@ -36,6 +37,7 @@ WEEK_DAYS chooseDayOfTheWeek() {
 		day = readInt(message);
 	}
 
+	//returns the selected option
 	switch (day) {
 
 		case 0:
@@ -67,17 +69,19 @@ WEEK_DAYS chooseDayOfTheWeek() {
 			break;
 
 		default:
-			return WEEK_DAYS::UNKNOWN; //if there isn't a correct option chosen
+			//if there isn't a correct option chosen
+			return WEEK_DAYS::UNKNOWN;
 			break;
 	}
 
 }
 
-//function that helps the enum to transform in words providing the days of the week
+//function that transforms enum to words providing the days of the week
 string weekDayToString(WEEK_DAYS weekDay) {
 
 	switch (weekDay) {
 
+		//returns a string with the day name
 		case WEEK_DAYS::MON:
 			return "Monday";
 			break;
@@ -106,6 +110,7 @@ string weekDayToString(WEEK_DAYS weekDay) {
 			return "Sunday";
 			break;
 
+			//if there is an error
 		case WEEK_DAYS::UNKNOWN:
 			return "There seems to be an error.";
 			break;
@@ -118,7 +123,7 @@ string weekDayToString(WEEK_DAYS weekDay) {
 
 }
 
-//function that add new visitor
+//function that adds new visitor
 void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	VISITOR visitor;
@@ -126,6 +131,7 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	cin.ignore();
 
+	//entering values for the struct fields
 	cout << "First name: ";
 	getline(cin, visitor.firstName);
 
@@ -134,6 +140,7 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	message = "Age: ";
 	cout << message;
+	//checks if the input is acceptable
 	visitor.age = readInt(message);
 
 	while (visitor.age < 10 or visitor.age > 117) {
@@ -147,6 +154,7 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	visitor.dayOfTheWeek = chooseDayOfTheWeek();
 
+	//if the input isn't acceptable
 	while (visitor.dayOfTheWeek == WEEK_DAYS::UNKNOWN) {
 
 		cout << "There seems to be a problem with your input. ";
@@ -158,6 +166,7 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	message = "How many books did they borrow?: ";
 	cout << message;
+	//checks if the input is acceptable
 	visitor.numberOfBooks = readInt(message);
 
 	while (visitor.numberOfBooks <= 0 or visitor.numberOfBooks > 7) {
@@ -188,6 +197,7 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 		message = "Year of release: ";
 		cout << message;
+		//checks if the input is acceptable
 		visitor.books[i].yearOfRelease = readInt(message);
 
 		while (visitor.books[i].yearOfRelease < 1455 or visitor.books[i].yearOfRelease > 2020) {
@@ -205,7 +215,8 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	newVisitor(visitors, visitorCount, visitor, maxId);
 }
-//function that show us all visitors
+
+//function that shows all visitors
 void showVisitorsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	cout << ".::All VISITORS::. " << endl;
@@ -233,7 +244,8 @@ void showVisitorsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	}
 
 }
-//function that edit the visitor's ID
+
+//function for editing the visitor's profile
 void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 	string message;
@@ -241,6 +253,8 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 	message = "Enter visitor's ID: ";
 	cout << message;
+
+	//checks if the input is acceptable
 	visitorId = readInt(message);
 
 	while (visitorId < 1 or visitorId > visitorCount) {
@@ -252,6 +266,7 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 		visitorId = readInt(message);
 	}
 
+	//getiing the visitor's profile
 	VISITOR visitor = findVisitor(visitors, visitorCount, visitorId);
 
 	cout << endl;
@@ -265,6 +280,8 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 	message = "Your choice: ";
 	cout << message;
+
+	//checks if the input is acceptable
 	edit = readInt(message);
 
 	while (edit < 0 or edit > 4) {
@@ -298,6 +315,7 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 		case 3:
 			message = "Age: ";
 			cout << message;
+			//checks if the input is acceptable
 			visitor.age = readInt(message);
 
 			while (visitor.age < 10 or visitor.age > 117) {
@@ -316,6 +334,7 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 		case 4:
 			visitor.dayOfTheWeek = chooseDayOfTheWeek();
 
+			//checks if the input is acceptable
 			while (visitor.dayOfTheWeek == WEEK_DAYS::UNKNOWN) {
 
 				cout << endl;
@@ -331,7 +350,8 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 			break;
 	}
 }
-// function that show us all the books who were borrowed
+
+//function that shows all borrowed books
 void showAllBorrowedBooksMenu(VISITOR* visitors, int& visitorCount) {
 
 	int bookNumber = 1;
@@ -351,7 +371,7 @@ void showAllBorrowedBooksMenu(VISITOR* visitors, int& visitorCount) {
 	}
 }
 
-//function that edit book details to the visitor
+//function for editing the borrowed book's details
 void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 	int visitorId, bookIndex;
@@ -360,6 +380,8 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 	message = "Enter visitor's ID: ";
 	cout << message;
+
+	//checks if the input is acceptable
 	visitorId = readInt(message);
 
 	while (visitorId < 1 or visitorId > visitorCount) {
@@ -374,6 +396,7 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 	VISITOR visitor = findVisitor(visitors, visitorCount, visitorId);
 
+	//menu for choosing a book
 	cout << endl;
 	cout << "Which book's detail would you like to edit? " << endl;
 	cout << endl;
@@ -387,6 +410,8 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	cout << endl;
 	message = "Your choice: ";
 	cout << message;
+
+	//checks if the input is acceptable
 	bookIndex = readInt(message);
 
 	while (bookIndex < 0 or bookIndex > visitor.numberOfBooks) {
@@ -409,6 +434,7 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	cout << endl;
 	cout << message;
 
+	 //checks if the input is acceptable
 	bookDetail = readInt(message);
 
 	while (bookDetail < 1 or bookDetail > 3) {
@@ -441,6 +467,8 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 		case 3:
 			message = "Year of release: ";
 			cout << message;
+
+			//checks if the input is acceptable
 			visitor.books[bookIndex].yearOfRelease = readInt(message);
 
 			while (visitor.books[bookIndex].yearOfRelease < 1455 or visitor.books[bookIndex].yearOfRelease > 2020) {
@@ -460,7 +488,8 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	}
 
 }
-//function that edit all the visitor's data.
+
+//function for choosing what to be edited
 void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
 
 	short int edit;
@@ -474,6 +503,8 @@ void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
 
 	message = "Your choice: ";
 	cout << message;
+
+	//checks if the input is acceptable
 	edit = readInt(message);
 
 	while (edit < 1 or edit > 2) {
@@ -491,10 +522,12 @@ void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
 	switch (edit) {
 
 		case 1:
+			//calling the function for editing a visitor
 			editVisitorDetailsMenu(visitors, visitorCount);
 			break;
 
 		case 2:
+			//calling the function for editing a book
 			editBooksDetailsMenu(visitors, visitorCount);
 			break;
 
@@ -505,7 +538,9 @@ void editVisitorMenu(VISITOR* visitors, int& visitorCount) {
 
 }
 
+//filter functions
 
+//function which shows all books with the same title as entered
 void getBorrowedBooksByTitleMenu(VISITOR* visitors, int& visitorCount) {
 
 	cin.ignore();
@@ -516,8 +551,10 @@ void getBorrowedBooksByTitleMenu(VISITOR* visitors, int& visitorCount) {
 	cout << "Enter title: ";
 	getline(cin, title);
 
+	//calling the function for finding the wanted books 
 	int resultsSize = getBorrowedBooksByTitle(visitors, visitorCount, results, title);
 
+	//shows the wanted books 
 	for (int i = 0; i < resultsSize; i++) {
 
 		cout << bookNumber << ". \"" << results[i].title << "\" by ";
@@ -526,6 +563,7 @@ void getBorrowedBooksByTitleMenu(VISITOR* visitors, int& visitorCount) {
 	}
 }
 
+//function which shows all books with the same author as entered
 void getBorrowedBooksByAuthorMenu(VISITOR* visitors, int& visitorCount) {
 
 	cin.ignore();
@@ -536,8 +574,10 @@ void getBorrowedBooksByAuthorMenu(VISITOR* visitors, int& visitorCount) {
 	cout << "Enter author name: ";
 	getline(cin, authorName);
 
+	//calling the function for finding the wanted books 
 	int resultsSize = getBorrowedBooksByAuthor(visitors, visitorCount, results, authorName);
 
+	//shows the wanted books
 	for (int i = 0; i < resultsSize; i++) {
 
 		cout << bookNumber << ". \"" << results[i].title << "\" by ";
@@ -545,9 +585,9 @@ void getBorrowedBooksByAuthorMenu(VISITOR* visitors, int& visitorCount) {
 		bookNumber++;
 	}
 
-
 }
 
+//function which shows all books with the same year of release as entered
 void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
 
 	BOOK results[30];
@@ -556,8 +596,10 @@ void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
 	cout << "Enter year of release: "; 
 	cin >> year;
 
+	//calling the function for finding the wanted books 
 	int resultsSize = getBorrowedBooksByYearOfRelease(visitors, visitorCount, results, year);
 
+	//shows the wanted books
 	for (int i = 0; i < resultsSize; i++) {
 
 		cout << bookNumber << ". \"" << results[i].title << "\" by ";
@@ -567,7 +609,7 @@ void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
 
 }
 
-
+//function for choosing a filter
 void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount) {
 
 	short int choice;
@@ -582,6 +624,7 @@ void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount) {
 	message = "Your choice: ";
 	cout << message;
 
+	//checks if the input is acceptable
 	choice = readInt(message);
 
 	while (choice < 1 or choice > 3) {
@@ -599,14 +642,17 @@ void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount) {
 	switch (choice) {
 
 		case 1:
+			//calling the function for showing books by title
 			getBorrowedBooksByTitleMenu(visitors, visitorCount);
 			break;
 
 		case 2:
+			//calling the function for showing books by author
 			getBorrowedBooksByAuthorMenu(visitors, visitorCount);
 			break;
 
 		case 3:
+			//calling the function for showing books by year of release
 			getBorrowedBooksByYearOfReleaseMenu(visitors, visitorCount);
 			break;
 
@@ -617,7 +663,7 @@ void showBorrowedBooksByADetailMenu(VISITOR* visitors, int& visitorCount) {
 
 }
 
-//function deleting by id
+//menu function for deleting a visitor's profile 
 void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	int visitorId;
@@ -625,6 +671,8 @@ void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	message = "Enter visitor's ID: ";
 	cout << message;
+
+	//checks if the input is acceptable
 	visitorId = readInt(message);
 	while (visitorId < 1 or visitorId > visitorCount) {
 
@@ -636,27 +684,35 @@ void deleteVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 		visitorId = readInt(message);
 	}
 
+	//calling the CRUD function for deleting a visitor
 	deleteVisitor(visitors, visitorCount, visitorId);
 }
 
-//function that reports the visitors per day
+//function that reports the number of visitors per day for the week
 void numberOfVisitorsPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 
+	//calling the function for choosing a day
 	WEEK_DAYS day = chooseDayOfTheWeek();
 	cout << endl;
+	//calling the function for converting enum to string
 	cout << "The total number of visitors for " << weekDayToString(day) << " is: ";
+	//calling the function for getting the number
 	cout << getNumberOfVisitorsPerDay(visitors, visitorCount, day) << endl;
 }
-//function that show the borrowed books per day
+
+//function that shows the borrowed books per day of the week
 void numberOfBooksPerDayReportsMenu(VISITOR* visitors, int& visitorCount) {
 
+	//calling the function for choosing a day
 	WEEK_DAYS day = chooseDayOfTheWeek();
 	cout << endl;
+	//calling the function for converting enum to string
 	cout << "The total number of borrowed books for " << weekDayToString(day) << " is: ";
+	//calling the function for getting the number
 	cout << getNumberOfBooksBorrowedPerDay(visitors, visitorCount, day) << endl;
 }
 
-
+//menu function for choosing a wanted report
 void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	short int choice;
@@ -670,7 +726,7 @@ void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	cout << endl;
 	message = "Your choice: ";
 	cout << message;
-
+	//checks if the input is acceptable
 	choice = readInt(message);
 
 	while (choice < 1 or choice > 3) {
@@ -688,14 +744,17 @@ void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	switch (choice) {
 
 		case 1:
+			//calling the function for getting the number of visitors per day of the week
 			numberOfVisitorsPerDayReportsMenu(visitors, visitorCount);
 			break;
 
 		case 2:
+			//calling the function for getting the number of borrowed books per day of the week
 			numberOfBooksPerDayReportsMenu(visitors, visitorCount);
 			break;
 
 		case 3:
+			//calling the function for getting the average number of all visitors' ages for the week
 			cout << "The average of the visitors' ages for the week is: ";
 			cout << getAverageOfVisitorsAgesForTheWeek(visitors, visitorCount) << endl;
 			break;
@@ -706,7 +765,8 @@ void showReportsMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	}
 
 }
-//function where  you can choose what do you want to see
+
+//main menu function for choosing what to do
 bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 	int choice;
@@ -729,6 +789,7 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	message = "Your choice: ";
 	cout << message;
 
+	//checks if the input is acceptable
 	choice = readInt(message);
 
 	while (choice < 1 or choice > 8) {
@@ -746,42 +807,52 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 	switch (choice) {
 
 		case 1:
+			//calling the function for creating a new visitor
 			newVisitorMenu(visitors, visitorCount, maxId);
 			break;
 
 		case 2:
+			//calling the function for showing all visitors
 			showVisitorsMenu(visitors, visitorCount, maxId);
 			break;
 
 		case 3:
+			//calling the function for showing all borrowed books
 			showAllBorrowedBooksMenu(visitors, visitorCount);
 			break;
 
 		case 4:
+			//calling the function for editing details
 			editVisitorMenu(visitors, visitorCount);
 			break;
 
 		case 5:
+			//calling the function for deleting a visitor's profile
 			deleteVisitorMenu(visitors, visitorCount, maxId);
 			break;
 
 		case 6:
+			//calling the function for showing all borrowed books by a detail
 			showBorrowedBooksByADetailMenu(visitors, visitorCount);
 			break;
 
 		case 7:
+			//calling the menu function for choosing a report wanted
 			showReportsMenu(visitors, visitorCount, maxId);
 			break;
 
 		case 8:
+			//goodbye message
 			cout << "Thank you for using our program. See you soon!" << endl;
 			return false;
 
 		default:
+			//if there is an error
 			cout << "There seems to be a problem with your input. Please try again later." << endl;
 			break;
 
 	}
 
+	//for continuous showing of the menu unless exit is chosen
 	return true;
 }
