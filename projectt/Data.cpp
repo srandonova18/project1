@@ -47,8 +47,6 @@ void editVisitor(VISITOR* visitors, VISITOR newVisitor, int& visitorsCount, int&
 	visitors[index] = newVisitor;
 }
 
-//filter functions
-
 //function for getting the books written by a specific author
 int getBorrowedBooksByAuthor(VISITOR* visitors, int visitorCount, BOOK* results, string authorName) {
 

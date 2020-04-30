@@ -364,12 +364,21 @@ void getBorrowedBooksByTitleMenu(VISITOR* visitors, int& visitorCount) {
 	int resultsSize = getBorrowedBooksByTitle(visitors, visitorCount, results, title);
 
 	//shows the wanted books 
-	for (int i = 0; i < resultsSize; i++) {
+	if (resultsSize == 0) {
 
-		cout << bookNumber << ". \"" << results[i].title << "\" by ";
-		cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
-		bookNumber++;
+		cout << endl;
+		cout << "There are none results that match your search." << endl;
+		cout << endl;
+	} else {
+
+		for (int i = 0; i < resultsSize; i++) {
+
+			cout << bookNumber << ". \"" << results[i].title << "\" by ";
+			cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
+			bookNumber++;
+		}
 	}
+	
 }
 
 //function which shows all books with the same author as entered
@@ -387,13 +396,21 @@ void getBorrowedBooksByAuthorMenu(VISITOR* visitors, int& visitorCount) {
 	int resultsSize = getBorrowedBooksByAuthor(visitors, visitorCount, results, authorName);
 
 	//shows the wanted books
-	for (int i = 0; i < resultsSize; i++) {
+	if (resultsSize == 0) {
 
-		cout << bookNumber << ". \"" << results[i].title << "\" by ";
-		cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
-		bookNumber++;
+		cout << endl;
+		cout << "There are none results that match your search." << endl;
+		cout << endl;
+	} else {
+
+		for (int i = 0; i < resultsSize; i++) {
+
+			cout << bookNumber << ". \"" << results[i].title << "\" by ";
+			cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
+			bookNumber++;
+		}
+
 	}
-
 }
 
 //function which shows all books with the same year of release as entered
@@ -409,13 +426,21 @@ void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
 	int resultsSize = getBorrowedBooksByYearOfRelease(visitors, visitorCount, results, year);
 
 	//shows the wanted books
-	for (int i = 0; i < resultsSize; i++) {
+	if (resultsSize == 0) {
 
-		cout << bookNumber << ". \"" << results[i].title << "\" by ";
-		cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
-		bookNumber++;
+		cout << endl;
+		cout << "There are none results that match your search." << endl;
+		cout << endl;
+	} else {
+
+		for (int i = 0; i < resultsSize; i++) {
+
+			cout << bookNumber << ". \"" << results[i].title << "\" by ";
+			cout << results[i].authorName << " released in " << results[i].yearOfRelease << endl;
+			bookNumber++;
+		}
+
 	}
-
 }
 
 //function that reports the number of visitors per day for the week
