@@ -8,7 +8,7 @@ string weekDayToString(WEEK_DAYS);
 
 void editBooksDetailsMenu(VISITOR*, int&);
 
-void editVisitorMenu(VISITOR*, int&);
+void editVisitorDetailsMenu(VISITOR*, int&);
 
 void getBorrowedBooksByTitleMenu(VISITOR*, int&);
 

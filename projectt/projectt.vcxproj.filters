@@ -21,7 +21,10 @@
     <ClCompile Include="Data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menus.cpp">
+    <ClCompile Include="GeneralMenus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdditionalMenus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

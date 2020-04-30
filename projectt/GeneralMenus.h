@@ -7,7 +7,7 @@ void newVisitorMenu(VISITOR*, int&, int&);
 
 void showVisitorsMenu(VISITOR*, int&, int&);
 
-void editVisitorDetailsMenu(VISITOR*, int&);
+void editVisitorMenu(VISITOR*, int&);
 
 void showAllBorrowedBooksMenu(VISITOR*, int&);
 

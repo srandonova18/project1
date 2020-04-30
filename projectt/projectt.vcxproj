@@ -147,8 +147,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AdditionalMenus.cpp" />
     <ClCompile Include="Data.cpp" />
-    <ClCompile Include="Menus.cpp" />
+    <ClCompile Include="GeneralMenus.cpp" />
     <ClCompile Include="projectt.cpp" />
   </ItemGroup>
   <ItemGroup>
