@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Data.cpp" />
+    <ClCompile Include="Menus.cpp" />
     <ClCompile Include="projectt.cpp" />
   </ItemGroup>
   <ItemGroup>
