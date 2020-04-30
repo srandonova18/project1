@@ -2,7 +2,8 @@
 #include <string>
 #include "StructuresAndEnum.h"
 #include "Data.h"
-#include "Menus.h"
+#include "GeneralMenus.h"
+#include "AdditionalMenus.h"
 using namespace std;
 
 //the idea behind the code is a library

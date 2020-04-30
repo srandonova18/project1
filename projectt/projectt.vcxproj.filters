@@ -32,7 +32,10 @@
     <ClInclude Include="Data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Menus.h">
+    <ClInclude Include="GeneralMenus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AdditionalMenus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

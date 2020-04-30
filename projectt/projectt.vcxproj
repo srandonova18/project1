@@ -152,8 +152,9 @@
     <ClCompile Include="projectt.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdditionalMenus.h" />
     <ClInclude Include="Data.h" />
-    <ClInclude Include="Menus.h" />
+    <ClInclude Include="GeneralMenus.h" />
     <ClInclude Include="StructuresAndEnum.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
