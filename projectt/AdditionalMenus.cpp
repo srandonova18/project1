@@ -418,9 +418,21 @@ void getBorrowedBooksByYearOfReleaseMenu(VISITOR* visitors, int& visitorCount) {
 
 	BOOK results[30];
 	int year, bookNumber = 1;
+	string message;
 
-	cout << "Enter year of release: ";
-	cin >> year;
+	message = "Year of release: ";
+	cout << message;
+
+	//checks if the input is acceptable
+	year = readInt(message);
+
+	while (year< 1455 or year > 2020) {
+
+		cout << "There seems to be something wrong with your input. Please try again." << endl;
+		cout << endl;
+		cout << message;
+		year = readInt(message);
+	}
 
 	//calling the function for finding the wanted books 
 	int resultsSize = getBorrowedBooksByYearOfRelease(visitors, visitorCount, results, year);
