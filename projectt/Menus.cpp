@@ -170,7 +170,6 @@ void newVisitorMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 		visitor.numberOfBooks = readInt(message);
 	}
 
-
 	cout << endl;
 
 	cout << ".::BOOKS::." << endl;
@@ -263,9 +262,21 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 	cout << "3. Age" << endl;
 	cout << "4. Day of visit" << endl;
 	cout << endl;
-	cout << "Your choice: ";
 
-	cin >> edit;
+	message = "Your choice: ";
+	cout << message;
+	edit = readInt(message);
+
+	while (edit < 0 or edit > 4) {
+
+		cout << endl;
+		cout << "There seems to be a problem with your input. " << endl;
+		cout << "Remember that the options you can enter are the numbers from 1 to 4 (included)." << endl;
+		cout << "Please try again." << endl;
+		cout << endl;
+		cout << message;
+		edit = readInt(message);
+	}
 	cout << endl;
 
 	cin.ignore();
@@ -291,6 +302,7 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 			while (visitor.age < 10 or visitor.age > 117) {
 
+				cout << endl;
 				cout << "There seems to be a problem with your input. " << endl;
 				cout << "Please notice that the visitor should be at least 10 years old." << endl;
 				cout << endl;
@@ -306,6 +318,7 @@ void editVisitorDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 			while (visitor.dayOfTheWeek == WEEK_DAYS::UNKNOWN) {
 
+				cout << endl;
 				cout << "There seems to be a problem with your input. ";
 				cout << "Please enter the number of a valid day of the week from the list." << endl;
 				visitor.dayOfTheWeek = chooseDayOfTheWeek();
@@ -351,6 +364,7 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 	while (visitorId < 1 or visitorId > visitorCount) {
 
+		cout << endl;
 		cout << "There seems to be a problem with your input. ";
 		cout << "Please try again." << endl;
 		cout << endl;
@@ -377,6 +391,7 @@ void editBooksDetailsMenu(VISITOR* visitors, int& visitorCount) {
 
 	while (bookIndex < 0 or bookIndex > visitor.numberOfBooks) {
 
+		cout << endl;
 		cout << "There seems to be a problem with your input. ";
 		cout << "Please try again." << endl;
 		cout << endl;
@@ -720,7 +735,7 @@ bool showMainMenu(VISITOR* visitors, int& visitorCount, int& maxId) {
 
 		cout << endl;
 		cout << "There seems to be a problem with your input. " << endl;
-		cout << "Remember that your only options are the number between 1 and 8 (including)." << endl;
+		cout << "Remember that your only options are the number between 1 and 8 (included)." << endl;
 		cout << "Please try again." << endl;
 		cout << endl;
 		cout << message;
