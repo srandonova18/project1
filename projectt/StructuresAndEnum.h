@@ -29,7 +29,7 @@ struct VISITOR {
 	string firstName = "";
 	string lastName = "";
 	short int age = 0;
-	WEEK_DAYS dayOfTheWeek = WEEK_DAYS::MON;
+	WEEK_DAYS dayOfTheWeek = WEEK_DAYS::UNKNOWN;
 	short int numberOfBooks = 0;
 	BOOK books[7];
 	int id = 0;
